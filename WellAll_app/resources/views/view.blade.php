@@ -1,31 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
-  <title>View Patient</title>
+    <title>Patient Details</title>
 </head>
 <body>
-  <h1>Patient Details</h1>
-  <div style="text-align: center;">
-    <p style="font-family: 'Libre Barcode 39';font-size: 100px; margin: 0%;">{{ $patient->BarcodeID }}</p>
-    <p>{{ $patient->BarcodeID}}</p>
-  </div>
+    <h1>Patient: {{ $patient->FirstName }} {{ $patient->LastName }}</h1>
 
-  <p><strong>First Name:</strong> {{ $patient->FirstName }}</p>
-  <p><strong>Last Name:</strong> {{ $patient->LastName }}</p>
-  <p><strong>Date of Birth:</strong> {{ $patient->DateOfBirth }}</p>
-  <p><strong>Gender:</strong> {{ $patient->Gender }}</p>
-  <p><strong>Contact Number:</strong> {{ $patient->ContactNumber }}</p>
-  <p><strong>Address:</strong> {{ $patient->Address }}</p>
-  <p><strong>Blood Type:</strong> {{ $patient->BloodType }}</p>
-  <p><strong>Allergies:</strong> {{ $patient->Allergies }}</p>
-  <p><strong>Existing Conditions:</strong> {{ $patient->ExistingConditions }}</p>
-  <p><strong>Emergency Contact:</strong> {{ $patient->EmergencyContact }}</p>
-  <p><strong>Emergency Phone:</strong> {{ $patient->EmergencyPhone }}</p>
-  <p><strong>Date Registered:</strong> {{ $patient->DateRegistered }}</p>
+    <ul>
+        <li><strong>Barcode ID:</strong> {{ $patient->BarcodeID }}</li>
+        <li><strong>Date of Birth:</strong> {{ $patient->DateOfBirth }}</li>
+        <li><strong>Gender:</strong> {{ $patient->Gender }}</li>
+        <li><strong>Contact:</strong> {{ $patient->ContactNumber }}</li>
+        <li><strong>Address:</strong> {{ $patient->Address }}</li>
+        <li><strong>Blood Type:</strong> {{ $patient->BloodType }}</li>
+        <li><strong>Allergies:</strong> {{ $patient->Allergies }}</li>
+        <li><strong>Existing Conditions:</strong> {{ $patient->ExistingConditions }}</li>
+        <li><strong>Emergency Contact:</strong> {{ $patient->EmergencyContact }}</li>
+        <li><strong>Emergency Phone:</strong> {{ $patient->EmergencyPhone }}</li>
+        <li><strong>Date Registered:</strong> {{ $patient->DateRegistered }}</li>
+    </ul>
 
-  <a href="{{ route('patients.index') }}">⬅ Back to Patient List</a>
+    <a href="{{ route('patients.index') }}">Back to list</a>
 </body>
 </html>

@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
-    public $timestamps = false;
-    protected $table = 'patient_table';
+    use HasFactory;
+
+    protected $table = 'patient_table'; 
     protected $primaryKey = 'PatientID';
+    public $timestamps = false; 
 
     protected $fillable = [
         'BarcodeID',
@@ -23,6 +26,6 @@ class Patient extends Model
         'ExistingConditions',
         'EmergencyContact',
         'EmergencyPhone',
-        'DateRegistered'
+        'DateRegistered',
     ];
 }
