@@ -18,7 +18,7 @@
                 <div class="card shadow-sm text-center">
                     <div class="card-body">
                         <h4 class="card-title">Patients</h4>
-                        <a href="{{ route('patients.index') }}" class="btn btn-primary">Go to Patients</a>
+                        <a href="{{ route('patients.index') }}">Go to Patients</a>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="card shadow-sm text-center">
                     <div class="card-body">
                         <h4 class="card-title">Appointments</h4>
-                        <button class="btn btn-secondary" disabled>Go to Appointments</button>
+                        <button disabled>Go to Appointments</button>
                     </div>
                 </div>
             </div>
