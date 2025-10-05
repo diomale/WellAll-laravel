@@ -9,7 +9,8 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 // Redirect root to dashboard
-Route::redirect('/', '/dashboard');
+Route::redirect('/', '/dashboard')->name('dashboard.index');
+
 
 // Show all patients
 Route::get('/patient', [PatientController::class, 'showAllPatients'])->name('patients.index');
@@ -26,3 +27,7 @@ Route::delete('/patient/{id}', [PatientController::class, 'destroy'])->name('del
 // Edit + update
 Route::get('/patient/{id}/edit', [PatientController::class, 'edit'])->name('editPatient');
 Route::put('/patient/{id}', [PatientController::class, 'update'])->name('updatePatient');
+
+//search sa dashboard
+Route::get('/search-patient', [PatientController::class, 'searchByBarcode'])->name('patients.search');
+

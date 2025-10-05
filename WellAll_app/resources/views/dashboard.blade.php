@@ -11,6 +11,19 @@
         <h1 class="fw-bold">WellAll Healthcare Dashboard</h1>
         <p class="text-muted">Manage patients and records easily</p>
     </header>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <form form action="{{ route('patients.search') }}" method="GET">
+                <input type="text" name="barcode" placeholder="Enter Barcode ID (e.g., P00012)" required autofocus>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            @if (session('error'))
+                <p>{{ session('error') }}</p>
+            @endif
+        </div>
+    </div>
+
     <nav>
         <div class="row justify-content-center">
             <!-- Patients -->

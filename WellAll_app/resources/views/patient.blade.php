@@ -58,5 +58,8 @@
         <input type="text" name="EmergencyPhone" placeholder="Emergency Phone">
         <button type="submit">Add Patient</button>
     </form>
+
+    <hr>
+    <a href="{{ route('dashboard') }}">Back to Dashboard</a>
 </body>
 </html>

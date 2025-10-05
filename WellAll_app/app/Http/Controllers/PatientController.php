@@ -33,8 +33,18 @@ class PatientController extends Controller
 
         // Generate BarcodeID
         $lastPatient = Patient::orderBy('PatientID', 'desc')->first();
-        $nextNumber = $lastPatient ? intval(substr($lastPatient->BarcodeID, 1)) + 1 : 1;
-        $barcodeID = 'P' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
+
+        if ($lastPatient) {
+            $numericPart = (int) filter_var($lastPatient->BarcodeID, FILTER_SANITIZE_NUMBER_INT);
+            $nextNumber = $numericPart + 1;
+        } else {
+            $nextNumber = 1;
+        }
+
+        $barcodeCore = 'P' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
+        $barcodeID = '*' . $barcodeCore . '*';
+
+
 
         Patient::create([
             'BarcodeID' => $barcodeID,
@@ -112,4 +122,26 @@ class PatientController extends Controller
 
         return redirect()->route('patients.index')->with('success', 'Patient updated successfully.');
     }
+
+    //search lets go
+    public function searchByBarcode(Request $request)
+    {
+    // Get barcode input and trim any spaces or symbols
+        $barcode = trim($request->input('barcode'));
+
+    
+        $cleanBarcode = str_replace('*', '', $barcode);
+
+    
+        $patient = Patient::where('BarcodeID', $cleanBarcode)
+        ->orWhere('BarcodeID', '*' . $cleanBarcode . '*')
+        ->first();
+
+        if ($patient) {
+            return redirect()->route('patients.show', $patient->PatientID);
+        } else {
+            return redirect()->back()->with('error', 'No patient found with that Barcode ID.');
+        }
+    }
+
 }
