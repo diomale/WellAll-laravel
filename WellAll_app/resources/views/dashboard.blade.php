@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('css/DashboardStyle.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WellAll Dashboard</title>
     
 </head>
 <body>
     <header>
-        <h1 class="fw-bold">WellAll Healthcare Dashboard</h1>
-        <p class="text-muted">Manage patients and records easily</p>
+        <div class="Title">WellAll Healthcare Dashboard</div>
+        <p class="subhead">Manage patients and records easily</p>
     </header>
 
     <div class="card mb-4 shadow-sm">
@@ -40,8 +41,8 @@
             <div class="col-md-4">
                 <div class="card shadow-sm text-center">
                     <div class="card-body">
-                        <h4 class="card-title">Appointments</h4>
-                        <button disabled>Go to Appointments</button>
+                        <h4 class="card-title">Doctors</h4>
+                        <a href="{{route('doctors.index')}}">Go to Doctors</a>
                     </div>
                 </div>
             </div>

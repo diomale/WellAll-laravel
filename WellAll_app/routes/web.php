@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+//patient routes
 
 // Redirect root to dashboard
 Route::redirect('/', '/dashboard')->name('dashboard.index');
@@ -30,4 +33,14 @@ Route::put('/patient/{id}', [PatientController::class, 'update'])->name('updateP
 
 //search sa dashboard
 Route::get('/search-patient', [PatientController::class, 'searchByBarcode'])->name('patients.search');
+
+// Doctor routes
+
+Route::get('/doctor', [DoctorController::class, 'index'])->name('doctors.index');
+Route::post('/doctor', [DoctorController::class, 'store'])->name('doctors.store');
+Route::get('/doctor/{id}', [DoctorController::class, 'show'])->name('doctors.show');
+Route::delete('/doctor/{id}', [DoctorController::class, 'destroy'])->name('doctors.destroy');
+Route::get('/doctor/{id}/edit', [DoctorController::class, 'edit'])->name('doctors.edit');
+Route::put('/doctor/{id}', [DoctorController::class, 'update'])->name('doctors.update');
+
 

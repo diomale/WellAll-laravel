@@ -33,7 +33,7 @@
             }
 
             
-            ul, a {
+            ul, a, title {
                 display: none !important;
             }
         }
@@ -59,6 +59,6 @@
     </ul>
 
     <a href="{{ route('patients.index') }}">Back to list</a>
-    <a href="{{ route('dashboard') }}">Back to Dashboard</a>
+    <a href="{{ route('dashboard.index') }}">Back to Dashboard</a>
 </body>
 </html>

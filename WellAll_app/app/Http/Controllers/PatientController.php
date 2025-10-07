@@ -31,6 +31,15 @@ class PatientController extends Controller
             'EmergencyPhone' => 'nullable|string|max:20',
         ]);
 
+        $existingPatient = Patient::where('FirstName', $request->FirstName)
+        ->where('LastName', $request->LastName)
+        ->first();
+        
+        //check if patient with same name exists
+        if ($existingPatient) {
+        return redirect()->back()->with('error', 'A patient with the same name already exists in the system!');
+        }
+
         // Generate BarcodeID
         $lastPatient = Patient::orderBy('PatientID', 'desc')->first();
 

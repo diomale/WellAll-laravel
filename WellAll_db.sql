@@ -39,6 +39,22 @@ CREATE TABLE IF NOT EXISTS `WellAll_db`.`patient_table` (
   UNIQUE INDEX `BarcodeID_UNIQUE` (`BarcodeID` ASC) VISIBLE)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `doctor_table` (
+  `DoctorID` INT NOT NULL AUTO_INCREMENT,
+  `DoctorCode` VARCHAR(50) NOT NULL,
+  `FirstName` VARCHAR(100) NOT NULL,
+  `LastName` VARCHAR(100) NOT NULL,
+  `Specialization` VARCHAR(100) NULL,
+  `ContactNumber` VARCHAR(20) NULL,
+  `Email` VARCHAR(100) NULL,
+  `Address` VARCHAR(255) NULL,
+  `DateRegistered` DATE NULL,
+  PRIMARY KEY (`DoctorID`),
+  UNIQUE INDEX `DoctorCode_UNIQUE` (`DoctorCode` ASC) VISIBLE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
