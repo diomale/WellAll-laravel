@@ -42,8 +42,8 @@
             <td>{{ $doctor->ContactNumber }}</td>
             <td>
                 <a href="{{ route('doctors.show', $doctor->DoctorID) }}">View</a>
-                <a href="{{ route('doctors.edit', $doctor->DoctorID) }}">Edit</a>
-                <form action="{{ route('doctors.destroy', $doctor->DoctorID) }}" method="POST" style="display:inline;">
+                <a href="{{ route('editDoctor', $doctor->DoctorID) }}">Edit</a>
+                <form action="{{ route('deleteDoctor', $doctor->DoctorID) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>

@@ -37,10 +37,18 @@ Route::get('/search-patient', [PatientController::class, 'searchByBarcode'])->na
 // Doctor routes
 
 Route::get('/doctor', [DoctorController::class, 'index'])->name('doctors.index');
+
+//store new doctor
 Route::post('/doctor', [DoctorController::class, 'store'])->name('doctors.store');
+
+// Show single doctor
 Route::get('/doctor/{id}', [DoctorController::class, 'show'])->name('doctors.show');
-Route::delete('/doctor/{id}', [DoctorController::class, 'destroy'])->name('doctors.destroy');
-Route::get('/doctor/{id}/edit', [DoctorController::class, 'edit'])->name('doctors.edit');
-Route::put('/doctor/{id}', [DoctorController::class, 'update'])->name('doctors.update');
+
+// Delete doctor
+Route::delete('/doctor/{id}', [DoctorController::class, 'destroy'])->name('deleteDoctor');
+
+//edit + update
+Route::get('/doctor/{id}/edit', [DoctorController::class, 'edit'])->name('editDoctor');
+Route::put('/doctor/{id}', [DoctorController::class, 'update'])->name('updateDoctor');
 
 

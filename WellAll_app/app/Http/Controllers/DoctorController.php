@@ -80,7 +80,23 @@ class DoctorController extends Controller
   {
     $doctor = Doctor::findOrFail($id);
 
-    $doctor->update($request->all());
+    $request->validate([
+      'FirstName' => 'required|string|max:100',
+      'LastName' => 'required|string|max:100',
+      'Specialization' => 'required|string|max:100',
+      'ContactNumber' => 'nullable|string|max:255',
+      'Email' => 'nullable|string|max:155',
+      'Address' => 'nullable|string|max:255',
+    ]);
+
+    $doctor->update($request->only([
+      'FirstName',
+      'LastName',
+      'Specialization',
+      'ContactNumber',
+      'Email',
+      'Address',
+    ]));
     return redirect()->route('doctors.index')->with('success', 'Doctor updated successfully!');
   }
 }

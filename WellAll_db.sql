@@ -54,6 +54,20 @@ CREATE TABLE IF NOT EXISTS `doctor_table` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+CREATE TABLE appointment_table (
+  AppointmentID INT AUTO_INCREMENT PRIMARY KEY,
+  PatientID INT NOT NULL,
+  DoctorID INT NOT NULL,
+  AppointmentDate DATE NOT NULL,
+  AppointmentTime TIME NOT NULL,
+  Reason VARCHAR(255),
+  Status ENUM('Scheduled', 'Completed', 'Cancelled') DEFAULT 'Scheduled',
+  DateCreated DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (PatientID) REFERENCES patient_table(PatientID) ON DELETE CASCADE,
+  FOREIGN KEY (DoctorID) REFERENCES doctor_table(DoctorID) ON DELETE CASCADE
+);
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
