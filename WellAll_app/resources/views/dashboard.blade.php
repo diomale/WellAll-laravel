@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <!-- Appointments -->
+            <!-- doctors -->
             <div class="col-md-4">
                 <div class="card shadow-sm text-center">
                     <div class="card-body">
@@ -45,6 +45,11 @@
                         <a href="{{route('doctors.index')}}">Go to Doctors</a>
                     </div>
                 </div>
+            </div>
+
+            <div>
+                <h3>Go to Appointments</h3>   
+                <a href="{{route('appointments.index')}}">Go to Appointments</a>             
             </div>
 
         </div>

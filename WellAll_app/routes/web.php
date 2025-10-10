@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
 
 // Dashboard
@@ -9,11 +10,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-//patient routes
+
 
 // Redirect root to dashboard
 Route::redirect('/', '/dashboard')->name('dashboard.index');
 
+/////////patient routes
 
 // Show all patients
 Route::get('/patient', [PatientController::class, 'showAllPatients'])->name('patients.index');
@@ -34,7 +36,7 @@ Route::put('/patient/{id}', [PatientController::class, 'update'])->name('updateP
 //search sa dashboard
 Route::get('/search-patient', [PatientController::class, 'searchByBarcode'])->name('patients.search');
 
-// Doctor routes
+/////////// Doctor routes
 
 Route::get('/doctor', [DoctorController::class, 'index'])->name('doctors.index');
 
@@ -50,5 +52,21 @@ Route::delete('/doctor/{id}', [DoctorController::class, 'destroy'])->name('delet
 //edit + update
 Route::get('/doctor/{id}/edit', [DoctorController::class, 'edit'])->name('editDoctor');
 Route::put('/doctor/{id}', [DoctorController::class, 'update'])->name('updateDoctor');
+
+
+//////////Appointment routes
+
+Route::get('/appointment', [AppointmentController::class, 'index'])->name('appointments.index');
+
+Route::post('/appointment', [AppointmentController::class, 'store'])->name('appointments.store');
+
+Route::get('/appointment/{id}', [AppointmentController::class, 'show'])->name('doctors.show');
+
+
+Route::delete('/appointment/{id}', [AppointmentController::class, 'destroy'])->name('deleteAppointment');
+
+
+Route::get('/appointment/{id}/edit', [AppointmentController::class, 'edit'])->name('editAppointment');
+Route::put('/appointment/{id}', [AppointmentController::class, 'update'])->name('updateAppointment');
 
 

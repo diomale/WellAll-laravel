@@ -39,6 +39,10 @@ CREATE TABLE IF NOT EXISTS `WellAll_db`.`patient_table` (
   UNIQUE INDEX `BarcodeID_UNIQUE` (`BarcodeID` ASC) VISIBLE)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `WellAll_db`.`doctor_table`
+-- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `doctor_table` (
   `DoctorID` INT NOT NULL AUTO_INCREMENT,
   `DoctorCode` VARCHAR(50) NOT NULL,
@@ -51,21 +55,27 @@ CREATE TABLE IF NOT EXISTS `doctor_table` (
   `DateRegistered` DATE NULL,
   PRIMARY KEY (`DoctorID`),
   UNIQUE INDEX `DoctorCode_UNIQUE` (`DoctorCode` ASC) VISIBLE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
 
 
-CREATE TABLE appointment_table (
-  AppointmentID INT AUTO_INCREMENT PRIMARY KEY,
-  PatientID INT NOT NULL,
-  DoctorID INT NOT NULL,
-  AppointmentDate DATE NOT NULL,
-  AppointmentTime TIME NOT NULL,
-  Reason VARCHAR(255),
-  Status ENUM('Scheduled', 'Completed', 'Cancelled') DEFAULT 'Scheduled',
-  DateCreated DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (PatientID) REFERENCES patient_table(PatientID) ON DELETE CASCADE,
-  FOREIGN KEY (DoctorID) REFERENCES doctor_table(DoctorID) ON DELETE CASCADE
-);
+-- -----------------------------------------------------
+-- Table `WellAll_db`.`appointment_table`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `appointment_table` (
+    `AppointmentID` INT AUTO_INCREMENT PRIMARY KEY,
+    `AppointmentCode` VARCHAR(50) NOT NULL UNIQUE,
+    `PatientID` INT,
+    `DoctorID` INT,
+    `AppointmentDate` DATE,
+    `AppointmentTime` TIME,
+    `Reason` TEXT,
+    Status ENUM('Scheduled', 'Completed', 'Cancelled') DEFAULT 'Scheduled',
+    `DateCreated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`PatientID`) REFERENCES `patient_table`(`PatientID`) ON DELETE CASCADE,
+  FOREIGN KEY (`DoctorID`) REFERENCES `doctor_table`(`DoctorID`) ON DELETE CASCADE
+
+)ENGINE=InnoDB;
 
 
 
