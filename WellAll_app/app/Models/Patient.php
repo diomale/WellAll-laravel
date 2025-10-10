@@ -9,23 +9,23 @@ class Patient extends Model
 {
     use HasFactory;
 
-    protected $table = 'patient_table'; 
+    protected $table = 'patients_table'; 
     protected $primaryKey = 'PatientID';
     public $timestamps = false; 
 
     protected $fillable = [
-        'BarcodeID',
-        'FirstName',
-        'LastName',
-        'DateOfBirth',
-        'Gender',
-        'ContactNumber',
-        'Address',
-        'BloodType',
-        'Allergies',
-        'ExistingConditions',
-        'EmergencyContact',
-        'EmergencyPhone',
-        'DateRegistered',
+        'PatientBarcodeID',
+        'PatientFirstName',
+        'PatientLastName',
+        'PatientDateOfBirth',
+        'PatientGender',
+        'PatientContactNumber',
+        'PatientAddress',
+        'PatientBloodType',
+        'PatientAllergies',
+        'PatientExistingConditions',
+        'PatientEmergencyContact',
+        'PatientEmergencyPhone',
+        'PatientDateRegistered',
     ];
 }

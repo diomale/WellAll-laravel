@@ -9,18 +9,17 @@ class Appointment extends Model
 {
     use HasFactory;
 
-    protected $table = 'appointment_table';
+    protected $table = 'appointments_table';
     protected $primaryKey = 'AppointmentID';
     public $timestamps = false;
 
     protected $fillable = [
-        'AppointmentCode',
+        'AppointmentBarcodeID',
         'PatientID',
         'DoctorID',
         'AppointmentDate',
         'AppointmentTime',
         'Reason',
-        'Status',
         'DateCreated',
     ];
 

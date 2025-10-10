@@ -1,9 +1,9 @@
-h1.Title{
+.Title{
   text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /*hello test*/

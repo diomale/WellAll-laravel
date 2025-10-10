@@ -9,18 +9,19 @@ class Doctor extends Model
 {
   use HasFactory;
 
-  protected $table = 'doctor_table';
+  protected $table = 'doctors_table';
   protected $primaryKey = 'DoctorID';
   public $timestamps = false;
 
   protected $fillable = [
-      'DoctorCode',
-      'FirstName',
-      'LastName',
+      'DoctorBarcode',
+      'DoctorFirstName',
+      'DoctorLastName',
       'Specialization',
-      'ContactNumber',
-      'Email',
-      'Address',
-      'DateRegistered'
+      'DoctorContactNumber',
+      'DoctorEmail',
+      'DoctorAddress',
+      'DoctorDateRegistered',
+      'DoctorAvailability'
   ];
 }

@@ -24,7 +24,7 @@
             <tr>
                 <th>Barcode ID</th>
                 <th>Name</th>
-                <th>DOB</th>
+                <th>Date Of Birth</th>
                 <th>Gender</th>
                 <th>Actions</th>
             </tr>
@@ -32,12 +32,12 @@
         <tbody>
         @foreach($patientData as $patient)
             <tr>
-                <td>{{ $patient->BarcodeID }}</td>
-                <td>{{ $patient->FirstName }} {{ $patient->LastName }}</td>
-                <td>{{ $patient->DateOfBirth }}</td>
-                <td>{{ $patient->Gender }}</td>
+                <td>{{ $patient->PatientBarcodeID }}</td>
+                <td>{{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</td>
+                <td>{{ $patient->PatientDateOfBirth }}</td>
+                <td>{{ $patient->PatientGender }}</td>
                 <td>
-                    <a href="{{ route('patients.show', $patient->PatientID) }}">View</a> |
+                    <a href="{{ route('patientShow', $patient->PatientID) }}">View</a> |
                     <a href="{{ route('editPatient', $patient->PatientID) }}">Edit</a> |
                     <form action="{{ route('deletePatient', $patient->PatientID) }}" method="POST" style="display:inline;">
                         @csrf
@@ -52,19 +52,19 @@
 
     <hr>
     <h2>Add New Patient</h2>
-    <form action="{{ route('patients.store') }}" method="POST">
+    <form action="{{ route('storePatient') }}" method="POST">
         @csrf
-        <input type="text" name="FirstName" placeholder="First Name" required>
-        <input type="text" name="LastName" placeholder="Last Name" required>
-        <input type="date" name="DateOfBirth" required>
-        <input type="text" name="Gender" placeholder="Gender" required>
-        <input type="text" name="ContactNumber" placeholder="Contact Number">
-        <input type="text" name="Address" placeholder="Address">
-        <input type="text" name="BloodType" placeholder="Blood Type">
-        <input type="text" name="Allergies" placeholder="Allergies">
-        <input type="text" name="ExistingConditions" placeholder="Existing Conditions">
-        <input type="text" name="EmergencyContact" placeholder="Emergency Contact">
-        <input type="text" name="EmergencyPhone" placeholder="Emergency Phone">
+        <input type="text" name="PatientFirstName" placeholder="First Name" required>
+        <input type="text" name="PatientLastName" placeholder="Last Name" required>
+        <input type="date" name="PatientDateOfBirth" required>
+        <input type="text" name="PatientGender" placeholder="Gender" required>
+        <input type="text" name="PatientContactNumber" placeholder="Contact Number">
+        <input type="text" name="PatientAddress" placeholder="Address">
+        <input type="text" name="PatientBloodType" placeholder="Blood Type">
+        <input type="text" name="PatientAllergies" placeholder="Allergies">
+        <input type="text" name="PatientExistingConditions" placeholder="Existing Conditions">
+        <input type="text" name="PatientEmergencyContact" placeholder="Emergency Contact">
+        <input type="text" name="PatientEmergencyPhone" placeholder="Emergency Phone">
         <button type="submit">Add Patient</button>
     </form>
 

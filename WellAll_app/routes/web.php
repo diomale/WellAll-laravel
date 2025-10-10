@@ -18,13 +18,13 @@ Route::redirect('/', '/dashboard')->name('dashboard.index');
 /////////patient routes
 
 // Show all patients
-Route::get('/patient', [PatientController::class, 'showAllPatients'])->name('patients.index');
+Route::get('/patient', [PatientController::class, 'showAllPatients'])->name('PatientsSection');
 
 // Store new patient
-Route::post('/patient', [PatientController::class, 'store'])->name('patients.store');
+Route::post('/patient', [PatientController::class, 'store'])->name('storePatient');
 
 // Show single patient
-Route::get('/patient/{id}', [PatientController::class, 'show'])->name('patients.show');
+Route::get('/patient/{id}', [PatientController::class, 'show'])->name('showPatient');
 
 // Delete patient
 Route::delete('/patient/{id}', [PatientController::class, 'destroy'])->name('deletePatient');
@@ -32,6 +32,8 @@ Route::delete('/patient/{id}', [PatientController::class, 'destroy'])->name('del
 // Edit + update
 Route::get('/patient/{id}/edit', [PatientController::class, 'edit'])->name('editPatient');
 Route::put('/patient/{id}', [PatientController::class, 'update'])->name('updatePatient');
+
+
 
 //search sa dashboard
 Route::get('/search-patient', [PatientController::class, 'searchByBarcode'])->name('patients.search');
@@ -44,7 +46,8 @@ Route::get('/doctor', [DoctorController::class, 'index'])->name('doctors.index')
 Route::post('/doctor', [DoctorController::class, 'store'])->name('doctors.store');
 
 // Show single doctor
-Route::get('/doctor/{id}', [DoctorController::class, 'show'])->name('doctors.show');
+Route::get('/patient/{id}', [PatientController::class, 'show'])->name('patientShow');
+
 
 // Delete doctor
 Route::delete('/doctor/{id}', [DoctorController::class, 'destroy'])->name('deleteDoctor');
