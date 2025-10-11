@@ -59,7 +59,7 @@ Route::get('/doctors/{id}/editDoctor', [DoctorController::class, 'editDoctor'])-
 Route::put('/doctors/{id}', [DoctorController::class, 'updateDoctor'])->name('updateDoctor');
 
 
-//////////Appointment routes
+//////////Appointment routes//////////////
 
 Route::get('/appointment', [AppointmentController::class, 'index'])->name('appointments.index');
 

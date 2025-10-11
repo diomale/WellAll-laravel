@@ -136,8 +136,6 @@ class PatientController extends Controller
     public function searchByBarcode(Request $request)
     {
         $patientBarcodeID = trim($request->input('patientBarcodeID'));
-
-        
         $cleanBarcode = str_replace('*', '', $patientBarcodeID);
 
         
@@ -147,12 +145,11 @@ class PatientController extends Controller
 
         
         $patient = Patient::where('patientBarcodeID', $cleanBarcode)
-            ->orWhere('patientBarcodeID', "*{$cleanBarcode}*")
-            ->first();
+            ->orWhere('patientBarcodeID', "*{$cleanBarcode}*")->first();
 
         
         if ($patient) {
-            return redirect()->route('patientShow', ['id' => $patient->PatientID]);
+            return redirect()->route('showPatient', ['id' => $patient->PatientID]);
         } else {
             return redirect()->back()->with('error', 'No patient found with that Barcode ID.');
         }
