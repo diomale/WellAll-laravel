@@ -37,7 +37,7 @@
                 <td>{{ $patient->PatientDateOfBirth }}</td>
                 <td>{{ $patient->PatientGender }}</td>
                 <td>
-                    <a href="{{ route('patientShow', $patient->PatientID) }}">View</a> |
+                    <a href="{{ route('showPatient', $patient->PatientID) }}">View</a> |
                     <a href="{{ route('editPatient', $patient->PatientID) }}">Edit</a> |
                     <form action="{{ route('deletePatient', $patient->PatientID) }}" method="POST" style="display:inline;">
                         @csrf

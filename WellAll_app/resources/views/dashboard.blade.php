@@ -32,7 +32,7 @@
                 <div class="card shadow-sm text-center">
                     <div class="card-body">
                         <h4 class="card-title">Patients</h4>
-                        <a href="{{ route('PatientsSection') }}">Go to Patients</a>
+                        <a href="{{ route('PatientSection') }}">Go to Patients</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="card shadow-sm text-center">
                     <div class="card-body">
                         <h4 class="card-title">Doctors</h4>
-                        <a href="{{route('doctors.index')}}">Go to Doctors</a>
+                        <a href="{{route('DoctorSection')}}">Go to Doctors</a>
                     </div>
                 </div>
             </div>

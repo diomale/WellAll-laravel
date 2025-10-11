@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Patient Details</title>
+
+    
     <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
 
     <style>
@@ -16,7 +18,6 @@
         @media print {
             body {
                 font-size: 100px;
-                font-family: Arial, sans-serif;
                 text-align: center;
                 margin: 100px auto;
             }
@@ -26,6 +27,7 @@
                 margin-bottom: 40px;
             }
 
+           
             p {
                 font-family: 'Libre Barcode 39', monospace;
                 font-size: 48px;
@@ -41,9 +43,15 @@
 </head>
 
 <body>
-    <h1>Patient:{{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</h1>
-    <p style="font-family: 'Libre Barcode 39';font-size: 48px;">{{ $patient->PatientBarcodeID }}</p>
+    
+    <h1>Patient: {{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</h1>
 
+    
+    <p style="font-family: 'Libre Barcode 39'; font-size: 48px;">
+        {{ $patient->PatientBarcodeID }}
+    </p>
+
+    
     <ul>
         <li><strong>Barcode ID:</strong> {{ $patient->PatientBarcodeID }}</li>
         <li><strong>Date of Birth:</strong> {{ $patient->PatientDateOfBirth }}</li>
@@ -58,7 +66,8 @@
         <li><strong>Date Registered:</strong> {{ $patient->PatientDateRegistered }}</li>
     </ul>
 
-    <a href="{{ route('PatientsSection') }}">Back to list</a>
-    <a href="{{ route('dashboard') }}">Back to Dashboard</a>
+   
+    <a href="{{ route('PatientSection') }}"> Back to Patient List</a> |
+    <a href="{{ route('dashboard.index') }}"> Back to Dashboard</a>
 </body>
 </html>

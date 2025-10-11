@@ -15,7 +15,7 @@ class PatientController extends Controller
     }
 
     // Store new patient
-    public function store(Request $request)
+    public function storePatient(Request $request)
     {
         $request->validate([
             'PatientFirstName' => 'required|string|max:100',
@@ -75,14 +75,14 @@ class PatientController extends Controller
     }
 
     // Show single patient
-    public function show($id)
+    public function showPatient($id)
     {
         $patient = Patient::findOrFail($id);
         return view('PatientView', compact('patient'));
     }
 
     // Delete patient
-    public function destroy($id)
+    public function deletePatient($id)
     {
         $patient = Patient::findOrFail($id);
         $patient->delete();
@@ -90,14 +90,14 @@ class PatientController extends Controller
     }
 
     // Edit form
-    public function edit($id)
+    public function editPatient($id)
     {
         $patient = Patient::findOrFail($id);
         return view('PatientEdit', compact('patient'));
     }
 
     // Update patient
-    public function update(Request $request, $id)
+    public function updatePatient(Request $request, $id)
     {
         $patient = Patient::findOrFail($id);
 
