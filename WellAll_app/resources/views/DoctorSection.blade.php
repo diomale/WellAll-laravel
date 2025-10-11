@@ -18,7 +18,7 @@
 
         <input type="text" name="DoctorFirstName" placeholder="First Name" required>
         <input type="text" name="DoctorLastName" placeholder="Last Name" required>
-        <input type="text" name="DoctorSpecialization" placeholder="Specialization">
+        <input type="text" name="Specialization" placeholder="Specialization">
         <input type="text" name="DoctorAvailability" placeholder="Availability">
         <input type="text" name="DoctorContactNumber" placeholder="Contact Number">
         <input type="email" name="DoctorEmail" placeholder="Email">
@@ -40,7 +40,7 @@
         <tr>
             <td>{{ $doctor->DoctorBarcode }}</td>
             <td> Dr. {{ $doctor->DoctorFirstName }} {{ $doctor->DoctorLastName }}</td>
-            <td>{{ $doctor->DoctorSpecialization }}</td>
+            <td>{{ $doctor->Specialization }}</td>
             <td>{{ $doctor->DoctorAvailability }}</td>
             <td>{{ $doctor->DoctorContactNumber }}</td>
             <td>

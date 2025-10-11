@@ -25,7 +25,7 @@ class DoctorController extends Controller
     $request->validate([
         'DoctorFirstName' => 'required|string|max:100',
         'DoctorLastName' => 'required|string|max:100',
-        'DoctorSpecialization' => 'required|string|max:100',
+        'Specialization' => 'required|string|max:100',
         'DoctorContactNumber' => 'nullable|string|max:20',
         'DoctorEmail' => 'nullable|email|max:150',
         'DoctorAddress' => 'nullable|string|max:255',
@@ -51,7 +51,7 @@ class DoctorController extends Controller
         'DoctorBarcode' => $DoctorBarcode,
         'DoctorFirstName' => $request->DoctorFirstName,
         'DoctorLastName' => $request->DoctorLastName,
-        'DoctorSpecialization' => $request->DoctorSpecialization,
+        'Specialization' => $request->Specialization,
         'DoctorAvailability' => $request->DoctorAvailability,
         'DoctorContactNumber' => $request->DoctorContactNumber,
         'DoctorEmail' => $request->DoctorEmail,
@@ -101,7 +101,7 @@ class DoctorController extends Controller
     $request->validate([
         'DoctorFirstName' => 'required|string|max:100',
         'DoctorLastName' => 'required|string|max:100',
-        'DoctorSpecialization' => 'required|string|max:100',
+        'Specialization' => 'required|string|max:100',
         'DoctorContactNumber' => 'nullable|string|max:20',
         'DoctorEmail' => 'nullable|email|max:150',
         'DoctorAddress' => 'nullable|string|max:255',
@@ -112,7 +112,7 @@ class DoctorController extends Controller
     $doctor->update($request->only([
         'DoctorFirstName',
         'DoctorLastName',
-        'DoctorSpecialization',
+        'Specialization',
         'DoctorContactNumber',
         'DoctorEmail',
         'DoctorAddress',
