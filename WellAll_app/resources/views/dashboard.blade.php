@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    @vite(['resources/css/DashboardStyle.css'])
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WellAll Dashboard</title>
     
 </head>
@@ -49,7 +49,7 @@
 
             <div>
                 <h3>Go to Appointments</h3>   
-                <a href="{{route('appointments.index')}}">Go to Appointments</a>             
+                <a href="{{route('AppointmentSection')}}">Go to Appointments</a>             
             </div>
 
         </div>

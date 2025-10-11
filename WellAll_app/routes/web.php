@@ -31,7 +31,7 @@ Route::get('/patient/{id}', [PatientController::class, 'showPatient'])->name('sh
 Route::delete('/patient/{id}', [PatientController::class, 'deletePatient'])->name('deletePatient');
 
 // Edit + update
-Route::get('/patient/{id}/edit', [PatientController::class, 'editPatient'])->name('editPatient');
+Route::get('/patient/{id}/editPatient', [PatientController::class, 'editPatient'])->name('editPatient');
 Route::put('/patient/{id}', [PatientController::class, 'updatePatient'])->name('updatePatient');
 
 
@@ -61,17 +61,21 @@ Route::put('/doctors/{id}', [DoctorController::class, 'updateDoctor'])->name('up
 
 //////////Appointment routes//////////////
 
-Route::get('/appointment', [AppointmentController::class, 'index'])->name('appointments.index');
 
-Route::post('/appointment', [AppointmentController::class, 'store'])->name('appointments.store');
+// Show all appointments
+Route::get('/appointments', [AppointmentController::class, 'showAllAppointments'])->name('AppointmentSection');
 
-Route::get('/appointment/{id}', [AppointmentController::class, 'show'])->name('doctors.show');
+// Create appointment form
+Route::get('/appointments/create', [AppointmentController::class, 'createAppointment'])->name('AppointmentCreate');
 
+// Store new appointment
+Route::post('/appointments/store', [AppointmentController::class, 'storeAppointment'])->name('AppointmentStore');
 
-Route::delete('/appointment/{id}', [AppointmentController::class, 'destroy'])->name('deleteAppointment');
+// Edit appointment
+Route::get('/appointments/edit/{id}', [AppointmentController::class, 'editAppointment'])->name('AppointmentEdit');
 
+// Update appointment
+Route::post('/appointments/update/{id}', [AppointmentController::class, 'updateAppointment'])->name('AppointmentUpdate');
 
-Route::get('/appointment/{id}/edit', [AppointmentController::class, 'edit'])->name('editAppointment');
-Route::put('/appointment/{id}', [AppointmentController::class, 'update'])->name('updateAppointment');
-
-
+// Delete appointment
+Route::delete('/appointments/delete/{id}', [AppointmentController::class, 'deleteAppointment'])->name('AppointmentDelete');
