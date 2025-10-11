@@ -36,6 +36,6 @@
     </form>
 
     <br>
-    <a href="{{ route('PatientsSection') }}">Back to list</a>
+    <a href="{{ route('PatientSection') }}">Back to list</a>
 </body>
 </html>
