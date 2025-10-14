@@ -59,7 +59,7 @@ class AppointmentController extends Controller
             'DateCreated' => now(),
         ]);
 
-        // ✅ Automatically add to queue
+        
         app(\App\Http\Controllers\QueueController::class)->addToQueue($appointment->AppointmentID);
 
         return redirect()->route('AppointmentSection')
