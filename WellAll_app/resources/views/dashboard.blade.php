@@ -13,18 +13,6 @@
         <p class="subhead">Manage patients and records easily</p>
     </header>
 
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <form form action="{{ route('patients.search') }}" method="GET">
-                <input type="text" name="patientBarcodeID" placeholder="Enter Barcode ID (e.g., P00012)" required autofocus>
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-            @if (session('error'))
-                <p>{{ session('error') }}</p>
-            @endif
-        </div>
-    </div>
-
     <nav>
         <div class="row justify-content-center">
             <!-- Patients -->
@@ -52,6 +40,10 @@
                 <a href="{{route('AppointmentSection')}}">Go to Appointments</a>             
             </div>
 
+            <div>
+                <h3>Go to Queue Section</h3>   
+                <a href="{{route('QueueSection')}}">Go to Queue Section</a>
+            </div>
         </div>
     </nav>
 </body>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\QueueController;
 use Illuminate\Support\Facades\Route;
 
 // Dashboard
@@ -79,3 +80,9 @@ Route::post('/appointments/update/{id}', [AppointmentController::class, 'updateA
 
 // Delete appointment
 Route::delete('/appointments/delete/{id}', [AppointmentController::class, 'deleteAppointment'])->name('AppointmentDelete');
+
+
+////Queue routes////
+Route::get('/QueueSection', [QueueController::class, 'showQueue'])->name('QueueSection');
+
+

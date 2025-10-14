@@ -23,7 +23,7 @@ class Appointment extends Model
         'DateCreated',
     ];
 
-    // Relationships
+    
     public function patient()
     {
         return $this->belongsTo(Patient::class, 'PatientID');

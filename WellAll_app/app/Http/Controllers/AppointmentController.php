@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\Doctor;
+use App\Models\Queue;
 
 class AppointmentController extends Controller
 {
-    // Show all appointments (with create form)
+    // Show all appointments 
     public function showAllAppointments()
     {
         $appointments = Appointment::with(['patient', 'doctor'])->get();
@@ -19,7 +20,7 @@ class AppointmentController extends Controller
         return view('AppointmentSection', compact('appointments', 'patients', 'doctors'));
     }
 
-    // Show form to create a new appointment (optional)
+    // Show form to create a new appointment 
     public function createAppointment()
     {
         $patients = Patient::all();
@@ -40,12 +41,15 @@ class AppointmentController extends Controller
             'Reason' => 'required|string|max:255',
         ]);
 
-        // Generate barcode ID
+        // Generate next barcode ID
         $lastAppointment = Appointment::orderBy('AppointmentID', 'desc')->first();
-        $nextNumber = $lastAppointment ? intval(substr($lastAppointment->AppointmentBarcodeID, 2, 5)) + 1 : 1;
+        $nextNumber = $lastAppointment
+            ? intval(substr($lastAppointment->AppointmentBarcodeID, 2, 5)) + 1
+            : 1;
         $AppointmentBarcodeID = '*' . 'A' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT) . '*';
 
-        Appointment::create([
+        // Create appointment record
+        $appointment = Appointment::create([
             'AppointmentBarcodeID' => $AppointmentBarcodeID,
             'PatientID' => $request->PatientID,
             'DoctorID' => $request->DoctorID,
@@ -55,7 +59,11 @@ class AppointmentController extends Controller
             'DateCreated' => now(),
         ]);
 
-        return redirect()->route('AppointmentSection')->with('success', 'Appointment created successfully!');
+        // ✅ Automatically add to queue
+        app(\App\Http\Controllers\QueueController::class)->addToQueue($appointment->AppointmentID);
+
+        return redirect()->route('AppointmentSection')
+            ->with('success', 'Appointment created and automatically added to queue!');
     }
 
     // Edit appointment
@@ -81,23 +89,28 @@ class AppointmentController extends Controller
             'Reason' => 'required|string|max:255',
         ]);
 
-        $appointment->update($request->only([
-            'PatientID',
-            'DoctorID',
-            'AppointmentDate',
-            'AppointmentTime',
-            'Reason',
-        ]));
+        $appointment->update([
+            'PatientID' => $request->PatientID,
+            'DoctorID' => $request->DoctorID,
+            'AppointmentDate' => $request->AppointmentDate,
+            'AppointmentTime' => $request->AppointmentTime,
+            'Reason' => $request->Reason,
+        ]);
 
-        return redirect()->route('AppointmentSection')->with('success', 'Appointment updated successfully!');
+        return redirect()->route('AppointmentSection')
+            ->with('success', 'Appointment updated successfully!');
     }
 
-    // Delete appointment
+    // Delete appointment and related queue entry
     public function deleteAppointment($id)
     {
+        Queue::where('AppointmentID', $id)->delete();
+
+        
         $appointment = Appointment::findOrFail($id);
         $appointment->delete();
 
-        return redirect()->back()->with('success', 'Appointment deleted successfully.');
+        return redirect()->back()
+            ->with('success', 'Appointment and its queue record deleted successfully!');
     }
 }
