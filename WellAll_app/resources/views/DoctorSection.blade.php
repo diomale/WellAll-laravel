@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Doctors</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doctors Section</title>
 </head>
 <body>
     <h1>Doctors</h1>
 
-    <form action="{{ route('doctors.store') }}" method="POST">
+    <form action="{{ route('storeDoctor') }}" method="POST">
         @csrf
         @if(session('success'))
             <p style="color: green;">{{ session('success') }}</p>
@@ -16,12 +19,13 @@
             <p style="color: red;">{{ session('error') }}</p>
         @endif
 
-        <input type="text" name="FirstName" placeholder="First Name" required>
-        <input type="text" name="LastName" placeholder="Last Name" required>
+        <input type="text" name="DoctorFirstName" placeholder="First Name" required>
+        <input type="text" name="DoctorLastName" placeholder="Last Name" required>
         <input type="text" name="Specialization" placeholder="Specialization">
-        <input type="text" name="ContactNumber" placeholder="Contact Number">
-        <input type="email" name="Email" placeholder="Email">
-        <input type="text" name="Address" placeholder="Address">
+        <input type="text" name="DoctorAvailability" placeholder="Availability">
+        <input type="text" name="DoctorContactNumber" placeholder="Contact Number">
+        <input type="email" name="DoctorEmail" placeholder="Email">
+        <input type="text" name="DoctorAddress" placeholder="Address">
         <button type="submit">Add Doctor</button>
     </form>
 
@@ -31,17 +35,19 @@
             <th>Doctor Code</th>
             <th>Name</th>
             <th>Specialization</th>
+            <th>Availability</th>
             <th>Contact</th>
             <th>Action</th>
         </tr>
         @foreach($doctors as $doctor)
         <tr>
-            <td>{{ $doctor->DoctorCode }}</td>
-            <td> Dr. {{ $doctor->FirstName }} {{ $doctor->LastName }}</td>
+            <td>{{ $doctor->DoctorBarcode }}</td>
+            <td> Dr. {{ $doctor->DoctorFirstName }} {{ $doctor->DoctorLastName }}</td>
             <td>{{ $doctor->Specialization }}</td>
-            <td>{{ $doctor->ContactNumber }}</td>
+            <td>{{ $doctor->DoctorAvailability }}</td>
+            <td>{{ $doctor->DoctorContactNumber }}</td>
             <td>
-                <a href="{{ route('doctors.show', $doctor->DoctorID) }}">View</a>
+                <a href="{{ route('showDoctor', $doctor->DoctorID) }}">View</a>
                 <a href="{{ route('editDoctor', $doctor->DoctorID) }}">Edit</a>
                 <form action="{{ route('deleteDoctor', $doctor->DoctorID) }}" method="POST" style="display:inline;">
                     @csrf

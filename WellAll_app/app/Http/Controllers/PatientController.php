@@ -11,28 +11,28 @@ class PatientController extends Controller
     public function showAllPatients()
     {
         $patientData = Patient::all();
-        return view('patient', compact('patientData'));
+        return view('PatientSection', compact('patientData'));
     }
 
     // Store new patient
-    public function store(Request $request)
+    public function storePatient(Request $request)
     {
         $request->validate([
-            'FirstName' => 'required|string|max:100',
-            'LastName' => 'required|string|max:100',
-            'DateOfBirth' => 'required|date',
-            'Gender' => 'required|string',
-            'ContactNumber' => 'nullable|string|max:20',
-            'Address' => 'nullable|string|max:255',
-            'BloodType' => 'nullable|string|max:3',
-            'Allergies' => 'nullable|string|max:255',
-            'ExistingConditions' => 'nullable|string|max:255',
-            'EmergencyContact' => 'nullable|string|max:100',
-            'EmergencyPhone' => 'nullable|string|max:20',
+            'PatientFirstName' => 'required|string|max:100',
+            'PatientLastName' => 'required|string|max:100',
+            'PatientDateOfBirth' => 'required|date',
+            'PatientGender' => 'required|string',
+            'PatientContactNumber' => 'nullable|string|max:20',
+            'PatientAddress' => 'nullable|string|max:255',
+            'PatientBloodType' => 'nullable|string|max:3',
+            'PatientAllergies' => 'nullable|string|max:255',
+            'PatientExistingConditions' => 'nullable|string|max:255',
+            'PatientEmergencyContact' => 'nullable|string|max:100',
+            'PatientEmergencyPhone' => 'nullable|string|max:20',
         ]);
 
-        $existingPatient = Patient::where('FirstName', $request->FirstName)
-        ->where('LastName', $request->LastName)
+        $existingPatient = Patient::where('PatientFirstName', $request->PatientFirstName)
+        ->where('PatientLastName', $request->PatientLastName)
         ->first();
         
         //check if patient with same name exists
@@ -44,45 +44,45 @@ class PatientController extends Controller
         $lastPatient = Patient::orderBy('PatientID', 'desc')->first();
 
         if ($lastPatient) {
-            $numericPart = (int) filter_var($lastPatient->BarcodeID, FILTER_SANITIZE_NUMBER_INT);
+            $numericPart = (int) filter_var($lastPatient->PatientBarcodeID, FILTER_SANITIZE_NUMBER_INT);
             $nextNumber = $numericPart + 1;
         } else {
             $nextNumber = 1;
         }
 
-        $barcodeCore = 'P' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
-        $barcodeID = '*' . $barcodeCore . '*';
+        $PatientBarcodeCore = 'P' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
+        $patientBarcodeID = '*' . $PatientBarcodeCore . '*';
 
 
 
         Patient::create([
-            'BarcodeID' => $barcodeID,
-            'FirstName' => $request->FirstName,
-            'LastName' => $request->LastName,
-            'DateOfBirth' => $request->DateOfBirth,
-            'Gender' => $request->Gender,
-            'ContactNumber' => $request->ContactNumber,
-            'Address' => $request->Address,
-            'BloodType' => $request->BloodType,
-            'Allergies' => $request->Allergies,
-            'ExistingConditions' => $request->ExistingConditions,
-            'EmergencyContact' => $request->EmergencyContact,
-            'EmergencyPhone' => $request->EmergencyPhone,
-            'DateRegistered' => now(),
+            'PatientBarcodeID' => $patientBarcodeID,
+            'PatientFirstName' => $request->PatientFirstName,
+            'PatientLastName' => $request->PatientLastName,
+            'PatientDateOfBirth' => $request->PatientDateOfBirth,
+            'PatientGender' => $request->PatientGender,
+            'PatientContactNumber' => $request->PatientContactNumber,
+            'PatientAddress' => $request->PatientAddress,
+            'PatientBloodType' => $request->PatientBloodType,
+            'PatientAllergies' => $request->PatientAllergies,
+            'PatientExistingConditions' => $request->PatientExistingConditions,
+            'PatientEmergencyContact' => $request->PatientEmergencyContact,
+            'PatientEmergencyPhone' => $request->PatientEmergencyPhone,
+            'PatientDateRegistered' => now(),
         ]);
 
-        return redirect()->back()->with('success', 'Patient added successfully with ID: ' . $barcodeID);
+        return redirect()->back()->with('success', 'Patient added successfully with ID: ' . $patientBarcodeID);
     }
 
     // Show single patient
-    public function show($id)
+    public function showPatient($id)
     {
         $patient = Patient::findOrFail($id);
-        return view('view', compact('patient'));
+        return view('PatientView', compact('patient'));
     }
 
     // Delete patient
-    public function destroy($id)
+    public function deletePatient($id)
     {
         $patient = Patient::findOrFail($id);
         $patient->delete();
@@ -90,67 +90,70 @@ class PatientController extends Controller
     }
 
     // Edit form
-    public function edit($id)
+    public function editPatient($id)
     {
         $patient = Patient::findOrFail($id);
-        return view('edit', compact('patient'));
+        return view('PatientEdit', compact('patient'));
     }
 
     // Update patient
-    public function update(Request $request, $id)
+    public function updatePatient(Request $request, $id)
     {
         $patient = Patient::findOrFail($id);
 
         $request->validate([
-            'FirstName' => 'required|string|max:100',
-            'LastName' => 'required|string|max:100',
-            'DateOfBirth' => 'required|date',
-            'Gender' => 'required|string',
-            'ContactNumber' => 'nullable|string|max:20',
-            'Address' => 'nullable|string|max:255',
-            'BloodType' => 'nullable|string|max:3',
-            'Allergies' => 'nullable|string|max:255',
-            'ExistingConditions' => 'nullable|string|max:255',
-            'EmergencyContact' => 'nullable|string|max:100',
-            'EmergencyPhone' => 'nullable|string|max:20',
+            'PatientFirstName' => 'required|string|max:100',
+            'PatientLastName' => 'required|string|max:100',
+            'PatientDateOfBirth' => 'required|date',
+            'PatientGender' => 'required|string',
+            'PatientContactNumber' => 'nullable|string|max:20',
+            'PatientAddress' => 'nullable|string|max:255',
+            'PatientBloodType' => 'nullable|string|max:3',
+            'PatientAllergies' => 'nullable|string|max:255',
+            'PatientExistingConditions' => 'nullable|string|max:255',
+            'PatientEmergencyContact' => 'nullable|string|max:100',
+            'PatientEmergencyPhone' => 'nullable|string|max:20',
         ]);
 
         $patient->update($request->only([
-            'FirstName',
-            'LastName',
-            'DateOfBirth',
-            'Gender',
-            'ContactNumber',
-            'Address',
-            'BloodType',
-            'Allergies',
-            'ExistingConditions',
-            'EmergencyContact',
-            'EmergencyPhone',
+            'PatientFirstName',
+            'PatientLastName',
+            'PatientDateOfBirth',
+            'PatientGender',
+            'PatientContactNumber',
+            'PatientAddress',
+            'PatientBloodType',
+            'PatientAllergies',
+            'PatientExistingConditions',
+            'PatientEmergencyContact',
+            'PatientEmergencyPhone',
         ]));
 
-        return redirect()->route('patients.index')->with('success', 'Patient updated successfully.');
+        return redirect()->route('PatientsSection')->with('success', 'Patient updated successfully.');
     }
 
     //search lets go
     public function searchByBarcode(Request $request)
     {
-    // Get barcode input and trim any spaces or symbols
-        $barcode = trim($request->input('barcode'));
+        $patientBarcodeID = trim($request->input('patientBarcodeID'));
+        $cleanBarcode = str_replace('*', '', $patientBarcodeID);
 
-    
-        $cleanBarcode = str_replace('*', '', $barcode);
+        
+        if (empty($cleanBarcode)) {
+            return redirect()->back()->with('error', 'Please enter a Barcode ID.');
+        }
 
-    
-        $patient = Patient::where('BarcodeID', $cleanBarcode)
-        ->orWhere('BarcodeID', '*' . $cleanBarcode . '*')
-        ->first();
+        
+        $patient = Patient::where('patientBarcodeID', $cleanBarcode)
+            ->orWhere('patientBarcodeID', "*{$cleanBarcode}*")->first();
 
+        
         if ($patient) {
-            return redirect()->route('patients.show', $patient->PatientID);
+            return redirect()->route('showPatient', ['id' => $patient->PatientID]);
         } else {
             return redirect()->back()->with('error', 'No patient found with that Barcode ID.');
         }
     }
+
 
 }
