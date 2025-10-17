@@ -1,0 +1,26 @@
+.sidebar {
+  background-color: #d4edda; /* light green */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 220px;
+  border-radius: 10px;
+}
+
+.nav-box {
+  display: block;
+  text-align: center;
+  background-color: #b2e0b2;
+  color: #000;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.nav-box:hover {
+  background-color: #94d194;
+  transform: scale(1.03);
+}

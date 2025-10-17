@@ -1,4 +1,89 @@
-.table, th , td{
-    border: 1px solid;
-    color: green;
+/* General Page Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4fff4; /* light green background */
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #b6f2b6;
+    width: 220px;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Sidebar buttons */
+.sidebar a {
+    text-decoration: none;
+    color: #1a4d1a;
+    background-color: #caffca;
+    border: 2px solid #9ee69e;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #9ee69e;
+    color: #fff;
+}
+
+/* Main content */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    color: #176b17;
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+.table th, .table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #d9fcd9;
+    color: #176b17;
+}
+
+/* Buttons and forms */
+button, .btn-primary {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover, .btn-primary:hover {
+    background-color: #3c8d40;
+}
+
+input[type="text"], input[type="date"] {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
 }
