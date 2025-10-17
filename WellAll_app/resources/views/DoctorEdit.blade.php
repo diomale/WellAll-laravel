@@ -23,13 +23,11 @@
         @csrf
         @method('PUT')
 
-        <input type="text" name="DoctorFirstName" value="{{ $doctor->FirstName }}" required>
-        <input type="text" name="DoctorLastName" value="{{ $doctor->LastName }}" required>
         <input type="text" name="Specialization" value="{{ $doctor->Specialization }}">
         <input type="text" name="DoctorAvailability" value="{{ $doctor->DoctorAvailability }}">
-        <input type="text" name="DoctorContactNumber" value="{{ $doctor->ContactNumber }}">
-        <input type="text" name="DoctorEmail" value="{{ $doctor->Email }}">
-        <input type="text" name="DoctorAddress" value="{{ $doctor->Address }}">
+        <input type="text" name="DoctorContactNumber" value="{{ $doctor->DoctorContactNumber }}">
+        <input type="text" name="DoctorEmail" value="{{ $doctor->DoctorEmail }}">
+        <input type="text" name="DoctorAddress" value="{{ $doctor->DoctorAddress }}">
         <button type="submit">Save Changes</button>
     </form>
 

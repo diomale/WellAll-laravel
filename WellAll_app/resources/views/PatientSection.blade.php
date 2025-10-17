@@ -9,6 +9,18 @@
 </head>
 <body>
     <h1>All Patients</h1>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <form form action="{{ route('patients.search') }}" method="GET">
+                <input type="text" name="patientBarcodeID" placeholder="Enter Barcode ID (e.g., P00012)" required autofocus>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            @if (session('error'))
+                <p>{{ session('error') }}</p>
+            @endif
+        </div>
+    </div>
     
     @if(session('success'))
         <p style="color: green;">{{ session('success') }}</p>

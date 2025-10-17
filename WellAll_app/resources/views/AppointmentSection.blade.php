@@ -47,7 +47,7 @@
             <option value="">-- Select Doctor --</option>
             @foreach($doctors as $doctor)
                 <option value="{{ $doctor->DoctorID }}">
-                    Dr. {{ $doctor->DoctorFirstName }} {{ $doctor->DoctorLastName }} - {{ $doctor->Specialization }}
+                    Dr. {{ $doctor->DoctorFirstName }} {{ $doctor->DoctorLastName }} - {{ $doctor->Specialization }} - {{ $doctor->DoctorAvailability }}
                 </option>
             @endforeach
         </select>
@@ -106,8 +106,6 @@
         </tbody>
     </table>
 
-    <a href="{{ route('dashboard.index') }}">back to dashboard</a>
-
     <script>
         function findPatient(barcode) {
             const select = document.getElementById('PatientID');
@@ -123,6 +121,7 @@
             }
         }
     </script>
-
+    <a href="{{route('dashboard.index')}}">dashboard</a>
+    <a href="{{route('QueueSection')}}">Queue</a>
 </body>
 </html>

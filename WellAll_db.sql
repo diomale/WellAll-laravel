@@ -146,6 +146,26 @@ CREATE TABLE IF NOT EXISTS `WellAll_db`.`medical_records_table` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `WellAll_db`.`queue_table`
+-- -----------------------------------------------------
+
+
+CREATE TABLE IF NOT EXISTS `WellAll_db`. `queue_table` (
+  `QueueID` INT AUTO_INCREMENT PRIMARY KEY,
+  `AppointmentID` INT,
+  `DoctorID` INT NOT NULL,
+  `PatientID` INT,
+  `QueueNumber` INT,
+  Status ENUM('Waiting', 'In Progress', 'Done') DEFAULT 'Waiting',
+  `TimeAdded` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`DoctorID`) REFERENCES `doctors_table`(`DoctorID`),
+  FOREIGN KEY (`AppointmentID`) REFERENCES `appointments_table`(`AppointmentID`),
+  FOREIGN KEY (`PatientID`) REFERENCES `patients_table`(`PatientID`)
+) ENGINE=InnoDB;
+
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
