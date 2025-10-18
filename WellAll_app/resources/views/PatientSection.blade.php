@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite(['resources/css/PatientSectionStyle.css'])
+    
+
+    @vite(['resources/css/NavigationStyle.css', 'resources/js/app.js'])
+
+    @include('layouts.navigation')
+
     <title>Patient Section</title>
 </head>
 <body>
@@ -34,7 +41,7 @@
         <p style="color: green;">{{ session('success') }}</p>
     @endif
 
-    <table border="1" cellpadding="8">
+    <table class="table" >
         <thead>
             <tr>
                 <th>Barcode ID</th>
@@ -85,5 +92,6 @@
 
     <hr>
     <a href="{{ route('dashboard') }}">Back to Dashboard</a>
+    
 </body>
 </html>

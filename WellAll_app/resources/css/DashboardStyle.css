@@ -1,10 +1,98 @@
-.Title{
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
+/* === DashboardStyle.css (clean + fixed) === */
+
+/* Reset + base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/*hello test*/
-/* comment */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f6fff6; /* light green background */
+  color: #063d06;
+}
+
+/* ===== Header ===== */
+header {
+  background-color: #43a047; /* medium green */
+  color: #fff;
+  text-align: center;
+  padding: 25px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+header .Title {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+header .subhead {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ===== Sidebar (Navigation) ===== */
+.sidebar {
+  position: fixed;
+  top: 100px; /* below header */
+  left: 20px;
+  width: 240px;
+  background-color: #c8f7c5; /* soft green */
+  border: 2px solid #8cd48a;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 5;
+}
+
+.sidebar .nav-box {
+  background-color: #a8e6a3;
+  color: #064906;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.sidebar .nav-box:hover {
+  background-color: #93dc90;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ===== Main Content ===== */
+main {
+  margin-left: 300px; /* leaves space for sidebar */
+  padding: 120px 40px 40px; /* top space for header */
+  min-height: 100vh;
+}
+
+main h1, main h2 {
+  color: #2e7d32;
+}
+
+/* ===== Responsive (for smaller screens) ===== */
+@media (max-width: 880px) {
+  .sidebar {
+    position: static;
+    width: calc(100% - 40px);
+    margin: 20px;
+  }
+
+  main {
+    margin-left: 0;
+    padding-top: 160px;
+  }
+}
