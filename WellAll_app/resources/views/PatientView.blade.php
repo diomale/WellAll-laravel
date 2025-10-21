@@ -34,7 +34,6 @@
 
         <br>
         <a href="{{ route('PatientSection') }}">Back to Patient List</a>
-        <a href="{{ route('dashboard.index') }}">Back to Dashboard</a>
     </div>
 </body>
 
