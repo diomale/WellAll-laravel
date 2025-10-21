@@ -124,7 +124,5 @@
             }
         }
     </script>
-    <a href="{{route('dashboard.index')}}">dashboard</a>
-    <a href="{{route('QueueSection')}}">Queue</a>
 </body>
 </html>

@@ -87,7 +87,10 @@ Route::delete('/appointments/delete/{id}', [AppointmentController::class, 'delet
 
 
 ////Queue routes////
-Route::get('/QueueSection', [QueueController::class, 'showQueue'])->name('QueueSection');
+Route::get('/queue', [QueueController::class, 'showQueue'])->name('QueueSection');
+Route::post('/queue/update/{id}', [QueueController::class, 'updateStatus'])->name('queue.update');
+
+
 
 ////check-in routes////
 Route::get('/check-in', [CheckInController::class, 'showAll'])->name('CheckInSection');

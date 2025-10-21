@@ -15,9 +15,11 @@
         Appointments
     </a>
 
-    <a href="{{ route('QueueSection') }}" class="nav-box {{ request()->routeIs('QueueSection') ? 'active' : '' }}">
+    <a href="{{ route('QueueSection') }}" 
+        class="nav-box {{ request()->routeIs('QueueSection') ? 'active' : '' }}">
         Queue
     </a>
+
 
     <a href="{{ route('CheckInSection') }}" 
         class="nav-box {{ request()->routeIs('CheckInSection') ? 'active' : '' }}">
