@@ -188,9 +188,5 @@
             }
         });
     </script>
-    </div>
-
-
-
 </body>
 </html>
