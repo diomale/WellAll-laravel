@@ -93,52 +93,5 @@
         <p style="color: red;">{{ session('error') }}</p>
     @endif
 
-    <table class="table" >
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Date Of Birth</th>
-                <th>Gender</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($patientData as $patient)
-            <tr>
-                <td>{{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</td>
-                <td>{{ $patient->PatientDateOfBirth }}</td>
-                <td>{{ $patient->PatientGender }}</td>
-                <td>
-                    <a href="{{ route('showPatient', $patient->PatientID) }}">View</a> |
-                    <a href="{{ route('editPatient', $patient->PatientID) }}">Edit</a> |
-                    <form action="{{ route('deletePatient', $patient->PatientID) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
-
-    <hr>
-    <h2>Add New Patient</h2>
-    <form action="{{ route('storePatient') }}" method="POST">
-        @csrf
-        <input type="text" name="PatientFirstName" placeholder="First Name" required>
-        <input type="text" name="PatientLastName" placeholder="Last Name" required>
-        <input type="date" name="PatientDateOfBirth" required>
-        <input type="text" name="PatientGender" placeholder="Gender" required>
-        <input type="text" name="PatientContactNumber" placeholder="Contact Number">
-        <input type="text" name="PatientAddress" placeholder="Address">
-        <input type="text" name="PatientBloodType" placeholder="Blood Type">
-        <input type="text" name="PatientAllergies" placeholder="Allergies">
-        <input type="text" name="PatientExistingConditions" placeholder="Existing Conditions">
-        <input type="text" name="PatientEmergencyContact" placeholder="Emergency Contact">
-        <input type="text" name="PatientEmergencyPhone" placeholder="Emergency Phone">
-        <button type="submit">Add Patient</button>
-    </form>
-    
 </body>
 </html>
