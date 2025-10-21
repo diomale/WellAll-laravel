@@ -11,7 +11,9 @@ export default defineConfig({
                  'resources/css/DashboardStyle.css', 
                  'resources/css/PatientSectionStyle.css',
                  'resources/css/NavigationStyle.css',
-                 'resources/css/PatientViewStyle.css'
+                 'resources/css/PatientViewStyle.css',
+                 'resources/css/AppointmentSectionStyle.css',
+                 'resources/css/DoctorSectionStyle.css'
                 ],
             refresh: true,
         }),

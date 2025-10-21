@@ -1,0 +1,87 @@
+.main-container {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-btn {
+    background-color: #43a047;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.add-btn:hover {
+    background-color: #2e7d32;
+}
+
+.doctor-form {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.submit-btn {
+    background-color: #1b5e20;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.submit-btn:hover {
+    background-color: #145a14;
+}
+
+.table-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.styled-table th, .styled-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.view-btn, .edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.view-btn { background-color: #2196f3; }
+.edit-btn { background-color: #ffb300; }
+.delete-btn { background-color: #e53935; border: none; cursor: pointer; }
+.view-btn:hover { background-color: #1976d2; }
+.edit-btn:hover { background-color: #ffa000; }
+.delete-btn:hover { background-color: #c62828; }
+
+.success { color: green; }
+.error { color: red; }
