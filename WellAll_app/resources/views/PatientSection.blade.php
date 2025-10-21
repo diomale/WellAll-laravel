@@ -39,7 +39,6 @@
                 <table class="patient-table">
                     <thead>
                         <tr>
-                            <th>Barcode ID</th>
                             <th>Name</th>
                             <th>Date Of Birth</th>
                             <th>Gender</th>
@@ -49,7 +48,6 @@
                     <tbody>
                     @foreach($patientData as $patient)
                         <tr>
-                            <td>{{ $patient->PatientBarcodeID }}</td>
                             <td>{{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</td>
                             <td>{{ $patient->PatientDateOfBirth }}</td>
                             <td>{{ $patient->PatientGender }}</td>
