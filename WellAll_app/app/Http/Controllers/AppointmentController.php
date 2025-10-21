@@ -7,6 +7,7 @@ use App\Models\Appointment;
 use App\Models\Patient;
 use App\Models\Doctor;
 use App\Models\Queue;
+use App\Models\CheckIn;
 
 class AppointmentController extends Controller
 {
@@ -41,14 +42,14 @@ class AppointmentController extends Controller
             'Reason' => 'required|string|max:255',
         ]);
 
-        // Generate next barcode ID
+        
         $lastAppointment = Appointment::orderBy('AppointmentID', 'desc')->first();
         $nextNumber = $lastAppointment
             ? intval(substr($lastAppointment->AppointmentBarcodeID, 2, 5)) + 1
             : 1;
         $AppointmentBarcodeID = '*' . 'A' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT) . '*';
 
-        // Create appointment record
+        
         $appointment = Appointment::create([
             'AppointmentBarcodeID' => $AppointmentBarcodeID,
             'PatientID' => $request->PatientID,
@@ -62,11 +63,14 @@ class AppointmentController extends Controller
         
         app(\App\Http\Controllers\QueueController::class)->addToQueue($appointment->AppointmentID);
 
+        
+        app(\App\Http\Controllers\CheckInController::class)->autoAddCheckIn($appointment->AppointmentID);
+
         return redirect()->route('AppointmentSection')
-            ->with('success', 'Appointment created and automatically added to queue!');
+            ->with('success', 'Appointment created and automatically added to queue and check-in!');
     }
 
-    // Edit appointment
+    
     public function editAppointment($id)
     {
         $appointment = Appointment::findOrFail($id);
@@ -82,11 +86,11 @@ class AppointmentController extends Controller
         $appointment = Appointment::findOrFail($id);
 
         $request->validate([
-            'PatientID' => 'required|exists:patients_table,PatientID',
-            'DoctorID' => 'required|exists:doctors_table,DoctorID',
-            'AppointmentDate' => 'required|date',
-            'AppointmentTime' => 'required|date_format:H:i',
-            'Reason' => 'required|string|max:255',
+            'PatientID' => 'required',
+            'DoctorID' => 'required',
+            'AppointmentDate' => 'required',
+            'AppointmentTime' => 'required',
+            'Reason' => 'required',
         ]);
 
         $appointment->update([
@@ -101,16 +105,16 @@ class AppointmentController extends Controller
             ->with('success', 'Appointment updated successfully!');
     }
 
-    // Delete appointment and related queue entry
+    // Delete appointment and related queue + check-in
     public function deleteAppointment($id)
     {
-        Queue::where('AppointmentID', $id)->delete();
+        \App\Models\CheckIn::where('AppointmentID', $id)->delete();
+        \App\Models\Queue::where('AppointmentID', $id)->delete();
 
-        
         $appointment = Appointment::findOrFail($id);
         $appointment->delete();
 
         return redirect()->back()
-            ->with('success', 'Appointment and its queue record deleted successfully!');
+            ->with('success', 'Appointment, queue, and check-in records deleted successfully!');
     }
 }

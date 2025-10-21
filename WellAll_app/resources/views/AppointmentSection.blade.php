@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Appointment Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/css/NavigationStyle.css', 'resources/js/app.js'])
+
+    @include('layouts.navigation')
 </head>
 <body>
     <h1>Appointment Management</h1>

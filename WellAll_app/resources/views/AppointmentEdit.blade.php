@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Appointment</title>
+    @vite(['resources/css/NavigationStyle.css', 'resources/js/app.js'])
+
+    @include('layouts.navigation')
 
     <style>
         body {
@@ -77,6 +80,19 @@
     <form action="{{ route('AppointmentUpdate', $appointment->AppointmentID) }}" method="POST">
         @csrf
         @method('PUT')
+
+        {{-- patient Selection --}}
+        <label for="PatientID">Choose Patient:</label><br>
+        <select name="PatientID" id="PatientID" required>
+            <option value="">-- Select Patient --</option>
+            @foreach($patients as $patient)
+                <option value="{{ $patient->PatientID }}" 
+                    {{ $patient->PatientID == $appointment->PatientID ? 'selected' : '' }}>
+                    {{ $patient->PatientFirstName }} {{ $patient->PatientLastName }} - 
+                </option>
+            @endforeach
+        </select>
+        <br>
 
         {{-- Doctor Selection --}}
         <label for="DoctorID">Choose Doctor:</label><br>

@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `WellAll_db`.`appointments_table` (
   `AppointmentTime` TIME NULL DEFAULT NULL,
   `Reason` TEXT NULL DEFAULT NULL,
   `DateCreated` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `appointments_table` ADD COLUMN Status VARCHAR(50) DEFAULT 'Pending',
   PRIMARY KEY (`AppointmentID`),
   UNIQUE INDEX `AppointmentBarcodeID_UNIQUE` (`AppointmentBarcodeID` ASC) VISIBLE,
   INDEX `fk_appointments_table_patients_table_idx` (`PatientID` ASC) VISIBLE,

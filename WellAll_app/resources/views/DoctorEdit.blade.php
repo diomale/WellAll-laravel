@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Edit Doctor</title>
+    @vite(['resources/css/NavigationStyle.css', 'resources/js/app.js'])
+
+    @include('layouts.navigation')
 </head>
 <body>
     <h1>Edit Doctor: {{ $doctor->DoctorFirstName }} {{ $doctor->DoctorLastName }}</h1>

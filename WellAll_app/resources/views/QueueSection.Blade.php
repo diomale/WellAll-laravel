@@ -2,9 +2,13 @@
 <html>
 <head>
     <title>Queue Section</title>
+    @vite(['resources/css/NavigationStyle.css', 'resources/js/app.js'])
+
+    @include('layouts.navigation')
 </head>
 <body>
     <h1>Queue List</h1>
+
 
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>

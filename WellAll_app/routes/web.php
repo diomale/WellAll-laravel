@@ -5,6 +5,8 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\QueueController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CheckInController;
+use App\Http\Controllers\MedicalRecordController;
 
 // Dashboard
 Route::get('/dashboard', function () {
@@ -75,8 +77,10 @@ Route::post('/appointments/store', [AppointmentController::class, 'storeAppointm
 // Edit appointment
 Route::get('/appointments/edit/{id}', [AppointmentController::class, 'editAppointment'])->name('AppointmentEdit');
 
+
 // Update appointment
-Route::post('/appointments/update/{id}', [AppointmentController::class, 'updateAppointment'])->name('AppointmentUpdate');
+Route::put('/appointments/update/{id}', [AppointmentController::class, 'updateAppointment'])->name('AppointmentUpdate');
+
 
 // Delete appointment
 Route::delete('/appointments/delete/{id}', [AppointmentController::class, 'deleteAppointment'])->name('AppointmentDelete');
@@ -85,4 +89,21 @@ Route::delete('/appointments/delete/{id}', [AppointmentController::class, 'delet
 ////Queue routes////
 Route::get('/QueueSection', [QueueController::class, 'showQueue'])->name('QueueSection');
 
+////check-in routes////
+Route::get('/check-in', [CheckInController::class, 'showAll'])->name('CheckInSection');
+Route::post('/check-in/search', [CheckInController::class, 'searchByBarcode'])->name('checkin.search');
+Route::post('/appointments/checkin/{id}/confirm', [CheckInController::class, 'confirmCheckIn'])->name('appointments.checkin.confirm');
+Route::post('/check-in/confirm/{appointmentID}', [CheckInController::class, 'confirmCheckIn'])->name('confirmCheckIn');
+
+
+
+////////Medical Record routes//////////
+Route::get('/medical-record', [MedicalRecordController::class, 'index'])->name('MedicalRecordSection');
+Route::get('/medical-record/add/{appointmentID}', [MedicalRecordController::class, 'create'])->name('MedicalRecordAdd');
+Route::post('/medical-record/store', [MedicalRecordController::class, 'store'])->name('MedicalRecordStore');
+Route::get('/medical-record/view/{id}', [MedicalRecordController::class, 'view'])->name('MedicalRecordView');
+Route::get('/medical-record/edit/{id}', [MedicalRecordController::class, 'edit'])->name('medical-record.edit');
+Route::put('/medical-record/update/{id}', [MedicalRecordController::class, 'update'])->name('medical-record.update');
+Route::delete('/medical-record/{id}/delete', [MedicalRecordController::class, 'destroy'])->name('medical-record.destroy');
+Route::get('/medical-record/create', [MedicalRecordController::class, 'create'])->name('medical-record.create');
 

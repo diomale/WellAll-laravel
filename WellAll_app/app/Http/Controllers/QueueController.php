@@ -10,37 +10,36 @@ use App\Models\Patient;
 
 class QueueController extends Controller
 {
-  // Show the queue list
-  public function showQueue()
-  {
-      $queues = Queue::with(['patient', 'doctor', 'appointment'])
-          ->orderBy('QueueNumber', 'asc')
-          ->get();
+    // Show the queue list
+    public function showQueue()
+    {
+        $queues = Queue::with(['patient', 'doctor', 'appointment'])
+            ->orderBy('QueueNumber', 'asc')
+            ->get();
 
-      return view('QueueSection', compact('queues'));
-  }
+        return view('QueueSection', compact('queues'));
+    }
 
-  // Add an appointment to the queue
-  public function addToQueue($appointmentID)
-  {
-      $appointment = Appointment::findOrFail($appointmentID);
+    // Add an appointment to the queue
+    public function addToQueue($appointmentID)
+    {
+        $appointment = Appointment::findOrFail($appointmentID);
 
-     
-      $lastQueue = Queue::where('DoctorID', $appointment->DoctorID)
-          ->orderBy('QueueNumber', 'desc')
-          ->first();
+        
+        $lastQueue = Queue::where('DoctorID', $appointment->DoctorID)
+            ->orderBy('QueueNumber', 'desc')
+            ->first();
 
-      $nextQueueNumber = $lastQueue ? $lastQueue->QueueNumber + 1 : 1;
+        $nextQueueNumber = $lastQueue ? $lastQueue->QueueNumber + 1 : 1;
 
-      Queue::create([
-          'AppointmentID' => $appointment->AppointmentID,
-          'DoctorID' => $appointment->DoctorID,
-          'PatientID' => $appointment->PatientID,
-          'QueueNumber' => $nextQueueNumber,
-          'Status' => 'Waiting',
-          'TimeAdded' => now(),
-      ]);
-  }
+        Queue::create([
+            'AppointmentID' => $appointment->AppointmentID,
+            'DoctorID' => $appointment->DoctorID,
+            'PatientID' => $appointment->PatientID,
+            'QueueNumber' => $nextQueueNumber,
+            'Status' => 'Waiting',
+            'TimeAdded' => now(),
+        ]);
+    }
 
-    
 }

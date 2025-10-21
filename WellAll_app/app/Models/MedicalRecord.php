@@ -5,21 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Queue extends Model
+class MedicalRecord extends Model
 {
     use HasFactory;
 
-    protected $table = 'queue_table';
-    protected $primaryKey = 'QueueID';
-    public $timestamps = false;
+    protected $table = 'medical_records_table';
+    protected $primaryKey = 'medicalID'; // ✅ Correct primary key name
+    public $timestamps = false; // ✅ because your table doesn’t have created_at/updated_at columns
 
     protected $fillable = [
-        'AppointmentID',
-        'DoctorID',
         'PatientID',
-        'QueueNumber',
-        'Status',
-        'TimeAdded',
+        'DoctorID',
+        'diagnosis',
+        'treatment',
+        'prescription',
+        'MedicalDateRegistered'
     ];
 
     
@@ -31,10 +31,5 @@ class Queue extends Model
     public function doctor()
     {
         return $this->belongsTo(Doctor::class, 'DoctorID');
-    }
-
-    public function appointment()
-    {
-        return $this->belongsTo(Appointment::class, 'AppointmentID');
     }
 }

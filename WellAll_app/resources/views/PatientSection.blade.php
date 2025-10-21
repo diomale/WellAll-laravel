@@ -22,9 +22,6 @@
                 <input type="text" name="patientBarcodeID" placeholder="Enter Barcode ID (e.g., P00012)" required autofocus>
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
-            @if (session('error'))
-                <p>{{ session('error') }}</p>
-            @endif
         </div>
     </div>
     
@@ -34,11 +31,6 @@
 
     @if(session('error'))
         <p style="color: red;">{{ session('error') }}</p>
-    @endif
-
-
-    @if(session('success'))
-        <p style="color: green;">{{ session('success') }}</p>
     @endif
 
     <table class="table" >
@@ -89,9 +81,6 @@
         <input type="text" name="PatientEmergencyPhone" placeholder="Emergency Phone">
         <button type="submit">Add Patient</button>
     </form>
-
-    <hr>
-    <a href="{{ route('dashboard') }}">Back to Dashboard</a>
     
 </body>
 </html>

@@ -129,7 +129,7 @@ class PatientController extends Controller
             'PatientEmergencyPhone',
         ]));
 
-        return redirect()->route('PatientsSection')->with('success', 'Patient updated successfully.');
+        return redirect()->route('PatientSection')->with('success', 'Patient updated successfully.');
     }
 
     //search lets go
