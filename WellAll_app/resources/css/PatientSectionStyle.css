@@ -29,13 +29,13 @@ body {
 
 /* Table container with scroll */
 .table-container {
-  max-height: 200px; /* scrolls when many patients */
+  max-height: 400px; /* scrolls when many patients */
   overflow-y: auto;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* Table styling */
+
 .patient-table {
   width: 100%;
   border-collapse: collapse;

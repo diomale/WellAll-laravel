@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    display: flex;
+}
+
+/* Sidebar stays on the left */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: #43a047;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content area */
+.content {
+    margin-left: 250px;
+    padding: 40px;
+    flex-grow: 1;
+}
+
+h1 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+/* Patient info box */
+.patient-info {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 500px;
+}
+
+.patient-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.patient-info li {
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.patient-info li:last-child {
+    border-bottom: none;
+}
+
+/* Buttons */
+a {
+    text-decoration: none;
+    color: white;
+    background-color: #43a047;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background 0.3s;
+}
+
+a:hover {
+    background-color: #2e7d32;
+}
+
+/* Hide barcode in view mode */
+.barcode {
+    display: none;
+}
+
+/* PRINT STYLES */
+@media print {
+    body {
+        text-align: center;
+        margin: 100px auto;
+        background: white;
+    }
+
+    .sidebar, .content a, ul {
+        display: none !important;
+    }
+
+    .barcode {
+        display: block !important;
+        font-family: 'Libre Barcode 39', monospace;
+        font-size: 48px;
+    }
+
+    h1 {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+}
+@media print {
+    /* Hide sidebar completely when printing */
+    .sidebar {
+        display: none !important;
+    }
+
+    /* Recenter printed content */
+    body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    /* Make the printed content centered properly */
+    h1 {
+        margin-top: 50px;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    p {
+        font-family: 'Libre Barcode 39', monospace;
+        font-size: 48px;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    ul, a, title {
+        display: none !important;
+    }
+}
