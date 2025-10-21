@@ -1,0 +1,145 @@
+/* === Layout === */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f6fff6;
+  color: #063d06;
+}
+
+/* Sidebar + Main side by side */
+.container {
+  display: flex;
+}
+
+/* Sidebar already styled in NavigationStyle.css */
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  margin-left: 20px;
+  padding-top: 50px;
+}
+
+/* Header */
+.main-content h1 {
+  color: #2e7d32;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table container with scroll */
+.table-container {
+  max-height: 400px; /* scrolls when many patients */
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.patient-table th, .patient-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #d7ecd7;
+}
+
+.patient-table th {
+  background-color: #a8e6a3;
+  color: #063d06;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.patient-table tr:hover {
+  background-color: #ecffec;
+}
+
+/* Add Button */
+.add-btn {
+  background-color: #43a047;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.add-btn:hover {
+  background-color: #2e7d32;
+}
+
+/* Add Patient Form */
+#addPatientForm {
+  display: none;
+  background-color: #c8f7c5;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #8cd48a;
+  margin-top: 20px;
+}
+
+#addPatientForm input {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #a8e6a3;
+  background-color: #f6fff6;
+  font-size: 14px;
+}
+/* === Search Bar Section === */
+.card {
+  background-color: #e8f5e9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-body input[type="text"] {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #a5d6a7;
+  font-size: 15px;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.card-body input[type="text"]:focus {
+  border-color: #43a047;
+  outline: none;
+  box-shadow: 0 0 5px #a5d6a7;
+}
+
+.card-body button {
+  background-color: #43a047;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.card-body button:hover {
+  background-color: #2e7d32;
+}
