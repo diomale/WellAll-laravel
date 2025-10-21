@@ -75,39 +75,35 @@
     <hr>
 
     <h2> Existing Appointments</h2>
-    <table border="1" cellpadding="6">
-        <thead>
-            <tr>
-                <th>Barcode</th>
-                <th>Patient</th>
-                <th>Doctor</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Reason</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($appointments as $appointment)
-                <tr>
-                    <td >{{ $appointment->AppointmentBarcodeID }}</td>
-                    <td>{{ $appointment->patient->PatientFirstName }} {{ $appointment->patient->PatientLastName }}</td>
-                    <td>Dr. {{ $appointment->doctor->DoctorFirstName }} {{ $appointment->doctor->DoctorLastName }}</td>
-                    <td>{{ $appointment->AppointmentDate }}</td>
-                    <td>{{ $appointment->AppointmentTime }}</td>
-                    <td>{{ $appointment->Reason }}</td>
-                    <td>
-                        <a href="{{ route('AppointmentEdit', $appointment->AppointmentID) }}">Edit</a>
-                        <form action="{{ route('AppointmentDelete', $appointment->AppointmentID) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Delete this appointment?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+   <table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date Of Birth</th>
+            <th>Gender</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach($patientData as $patient)
+        <tr>
+            <td>{{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</td>
+            <td>{{ $patient->PatientDateOfBirth }}</td>
+            <td>{{ $patient->PatientGender }}</td>
+            <td>
+                <a href="{{ route('showPatient', $patient->PatientID) }}">View</a> |
+                <a href="{{ route('editPatient', $patient->PatientID) }}">Edit</a> |
+                <form action="{{ route('deletePatient', $patient->PatientID) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
+
 
     <script>
         function findPatient(barcode) {
