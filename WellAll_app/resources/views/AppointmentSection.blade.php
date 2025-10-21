@@ -112,10 +112,47 @@
             <label for="Reason">Reason for Appointment:</label><br>
             <textarea name="Reason" id="Reason" rows="3" cols="40" required></textarea>
 
-            <br><br>
-            <button type="submit"> Save Appointment</button>
-            <a href="{{ route('AppointmentSection') }}"> Cancel</a>
-        </form>
+        <br><br>
+        <button type="submit"> Save Appointment</button>
+        <a href="{{ route('AppointmentSection') }}"> Cancel</a>
+    </form>
+
+    <hr>
+
+    <h2> Existing Appointments</h2>
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>Barcode</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Reason</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($appointments as $appointment)
+                <tr>
+                    <td >{{ $appointment->AppointmentBarcodeID }}</td>
+                    <td>{{ $appointment->patient->PatientFirstName }} {{ $appointment->patient->PatientLastName }}</td>
+                    <td>Dr. {{ $appointment->doctor->DoctorFirstName }} {{ $appointment->doctor->DoctorLastName }}</td>
+                    <td>{{ $appointment->AppointmentDate }}</td>
+                    <td>{{ $appointment->AppointmentTime }}</td>
+                    <td>{{ $appointment->Reason }}</td>
+                    <td>
+                        <a href="{{ route('AppointmentEdit', $appointment->AppointmentID) }}">Edit</a>
+                        <form action="{{ route('AppointmentDelete', $appointment->AppointmentID) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Delete this appointment?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
         <script>
             function findPatient(barcode) {
