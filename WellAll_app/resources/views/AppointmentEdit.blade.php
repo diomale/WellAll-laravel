@@ -7,8 +7,6 @@
     <title>Edit Appointment</title>
     @vite(['resources/css/NavigationStyle.css', 'resources/js/app.js'])
 
-    @include('layouts.navigation')
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -129,6 +127,5 @@
     {{-- Back Links --}}
     <br>
     <a href="{{ route('AppointmentSection') }}">Back to Appointments</a><br>
-    <a href="{{ route('dashboard.index') }}">Back to Dashboard</a>
 </body>
 </html>

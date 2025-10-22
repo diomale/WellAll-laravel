@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@include('layouts.navigation')
 @section('content')
+@vite(['resources/css/MedicalRecordSectionStyle.css', 'resources/css/NavigationStyle.css'])
 <div class="medical-section-container">
     {{-- Flash Messages --}}
     @if(session('success'))

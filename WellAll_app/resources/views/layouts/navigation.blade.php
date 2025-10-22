@@ -1,61 +1,46 @@
-<div class="sidebar">
-    <a href="{{ route('dashboard.index') }}" class="nav-box {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
-        Dashboard
-    </a>
+<div class="wellall-sidebar">
+    <nav class="wellall-sidebar-menu">
 
-    <a href="{{ route('PatientSection') }}" class="nav-box {{ request()->routeIs('PatientSection', 'showPatient', 'editPatient') ? 'active' : '' }}">
-        Patients
-    </a>
+        <a href="{{ route('dashboard.index') }}" 
+           class="wellall-menu-item {{ request()->routeIs('dashboard.index') ? 'is-active' : '' }}">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Dashboard</span>
+        </a>
 
-    <a href="{{ route('DoctorSection') }}" class="nav-box {{ request()->routeIs('DoctorSection', 'showDoctor', 'editDoctor') ? 'active' : '' }}">
-        Doctors
-    </a>
+        <a href="{{ route('PatientSection') }}" 
+           class="wellall-menu-item {{ request()->routeIs('PatientSection', 'showPatient', 'editPatient') ? 'is-active' : '' }}">
+            <i class="fa-solid fa-user"></i>
+            <span>Patients</span>
+        </a>
 
-    <a href="{{ route('AppointmentSection') }}" class="nav-box {{ request()->routeIs('AppointmentSection', 'AppointmentEdit') ? 'active' : '' }}">
-        Appointments
-    </a>
+        <a href="{{ route('DoctorSection') }}" 
+           class="wellall-menu-item {{ request()->routeIs('DoctorSection', 'showDoctor', 'editDoctor') ? 'is-active' : '' }}">
+            <i class="fa-solid fa-user-md"></i>
+            <span>Doctors</span>
+        </a>
 
-    <a href="{{ route('QueueSection') }}" 
-        class="nav-box {{ request()->routeIs('QueueSection') ? 'active' : '' }}">
-        Queue
-    </a>
+        <a href="{{ route('AppointmentSection') }}" 
+           class="wellall-menu-item {{ request()->routeIs('AppointmentSection', 'AppointmentEdit') ? 'is-active' : '' }}">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Appointments</span>
+        </a>
 
-    <a href="{{ route('CheckInSection') }}" 
-        class="nav-box {{ request()->routeIs('CheckInSection') ? 'active' : '' }}">
-        Check-In
-    </a>
+        <a href="{{ route('QueueSection') }}" 
+           class="wellall-menu-item {{ request()->routeIs('QueueSection') ? 'is-active' : '' }}">
+            <i class="fa-solid fa-list-ol"></i>
+            <span>Queue</span>
+        </a>
 
-    <a href="{{ route('MedicalRecordSection') }}" 
-        class="nav-box {{ request()->routeIs('medical_records.*') ? 'active' : '' }}">
-        Medical Records
-    </a>
+        <a href="{{ route('CheckInSection') }}" 
+           class="wellall-menu-item {{ request()->routeIs('CheckInSection') ? 'is-active' : '' }}">
+            <i class="fa-solid fa-sign-in-alt"></i>
+            <span>Check-In</span>
+        </a>
+
+        <a href="{{ route('MedicalRecordSection') }}" 
+           class="wellall-menu-item {{ request()->routeIs('medical_records.*') ? 'is-active' : '' }}">
+            <i class="fa-solid fa-notes-medical"></i>
+            <span>Medical Records</span>
+        </a>
+    </nav>
 </div>
-
-<style>
-    .sidebar {
-        width: 200px;
-        background-color: #43a047;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    .nav-box {
-        color: white;
-        text-decoration: none;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        transition: background 0.3s;
-    }
-
-    .nav-box:hover {
-        background-color: #2e7d32;
-    }
-
-    .nav-box.active {
-        background-color: #1b5e20;
-        font-weight: bold;
-    }
-</style>

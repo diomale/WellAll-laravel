@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
     <title>Doctor Details</title>
-    @vite(['resources/css/NavigationStyle.css', 'resources/js/app.js'])
-
-    @include('layouts.navigation')
+    @vite(['resources/css/NavigationStyle.css'])
 </head>
 <body>
     <h1>Doctor: {{ $doctor->DoctorFirstName }} {{ $doctor->DoctorLastName }}</h1>
@@ -24,6 +22,5 @@
     </ul>
 
     <a href="{{ route('DoctorSection') }}">Back to list</a>
-    <a href="{{ route('dashboard.index') }}">Back to Dashboard</a>
 </body>
 </html>

@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@include('layouts.navigation')
 @section('content')
+@vite(['resources/css/QueueStyle.css', 'resources/css/NavigationStyle.css'])
 <div class="container mt-4">
     <h2 class="mb-4 text-success text-center">Queue List</h2>
 

@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WellAll System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    @vite(['resources/css/app.css'])
-    @vite(['resources/css/NavigationStyle.css', 'resources/js/app.js'])
-    @include('layouts.navigation')
+
+    {{-- Vite CSS --}}
+    @vite([
+        'resources/css/app.css'
+    ])
+
+    {{-- Font Awesome --}}
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="bg-light">
+<body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">WellAll System</a>
-        </div>
-    </nav>
+    {{-- Header --}}
+    <header class="header">
+        <div class="header-title">WellAll Healthcare</div>
+        <p class="header-subtitle">Manage patients and records easily</p>
+    </header>
 
-    <main class="container">
+    {{-- Main Content --}}
+    <main class="main-content">
         @yield('content')
     </main>
 

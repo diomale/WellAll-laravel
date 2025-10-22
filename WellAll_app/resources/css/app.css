@@ -1,9 +1,114 @@
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* === GLOBAL RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f6fff6;
+  color: #063d06;
+  display: flex;
+}
+
+/* === HEADER === */
+.header {
+  background-color: #43a047;
+  color: #fff;
+  text-align: center;
+  padding: 25px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 15%;
+  z-index: 100;
+}
+
+.header-title {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.header-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* === MAIN CONTENT AREA === */
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  margin-left: 15%; /* leaves room for sidebar */
+  margin-top: 10%; /* below the header */
+  min-height: auto;
+  background-color: #f6fff6;
+}
+
+/* Headings inside main content */
+.main-content h1 {
+  color: #2e7d32;
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* === BUTTONS === */
+button, .btn {
+  background-color: #43a047;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: #2e7d32;
+}
+
+/* === FLASH MESSAGES === */
+.flash-success {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.flash-error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+  .main-content {
+    margin-left: 200px;
+    padding: 25px;
+  }
+
+  .header-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .main-content {
+    margin: 160px 10px 20px 10px;
+  }
 }

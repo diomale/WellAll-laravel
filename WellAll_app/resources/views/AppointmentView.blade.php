@@ -7,7 +7,6 @@
     <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
 </head>
 <body>
-    @include('layouts.navigation')
 
     <div class="content">
         <h1>Appointment Details</h1>

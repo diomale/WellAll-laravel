@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
+@include('layouts.navigation')
 @section('content')
+@vite(['resources/css/CheckInSectionStyle.css', 'resources/css/NavigationStyle.css'])
 <div class="container mt-4">
     <h2 class="mb-3 text-center text-success">Check-In Section</h2>
 

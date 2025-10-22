@@ -5,35 +5,6 @@ body {
     background-color: #f4f9f4;
     display: flex;
 }
-
-/* Sidebar (uses your existing navigation) */
-.sidebar {
-    width: 200px;
-    background-color: #43a047;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.nav-box {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.nav-box:hover {
-    background-color: #2e7d32;
-}
-
-.nav-box.active {
-    background-color: #1b5e20;
-    font-weight: bold;
-}
-
 /* Main container */
 .main-container {
     flex-grow: 1;
@@ -42,14 +13,14 @@ body {
 }
 
 /* Header */
-.header {
+.header-doctor {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.header h1 {
+.header-doctor h1 {
     color: #2e7d32;
     font-size: 28px;
 }

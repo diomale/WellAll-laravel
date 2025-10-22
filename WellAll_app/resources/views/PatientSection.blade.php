@@ -1,74 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Patient Section</title>
-    @vite(['resources/css/NavigationStyle.css', 'resources/css/PatientSectionStyle.css', 'resources/js/app.js'])
-</head>
-<body>
-    <div class="container">
-        {{-- Sidebar --}}
-        @include('layouts.navigation')
+@extends('layouts.app')
+@include('layouts.navigation')
+@section('content')
+@vite(['resources/css/PatientSectionStyle.css', 'resources/css/NavigationStyle.css'])
+<div class="container">
+    {{-- Main content beside sidebar --}}
+    <div class="main-content">
+        <h1>All Patients</h1>
 
-        {{-- Main content beside sidebar --}}
-        <div class="main-content">
-            <h1>All Patients</h1>
-
-            {{-- Search Bar --}}
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <form action="{{ route('patients.search') }}" method="GET">
-                        <input type="text" name="patientBarcodeID" placeholder="Enter Barcode ID (e.g., P00012)" required autofocus>
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </form>
-                </div>
+        {{-- Search Bar --}}
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <form action="{{ route('patients.search') }}" method="GET" class="search-form">
+                    <input 
+                        type="text" 
+                        name="patientBarcodeID" 
+                        placeholder="Enter Barcode ID (e.g., P00012)" 
+                        required 
+                        autofocus
+                    >
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
             </div>
-            
-            {{-- Flash Messages --}}
-            @if(session('success'))
-                <p style="color: green;">{{ session('success') }}</p>
-            @endif
-            @if(session('error'))
-                <p style="color: red;">{{ session('error') }}</p>
-            @endif
+        </div>
+        
+        {{-- Flash Messages --}}
+        @if(session('success'))
+            <p class="flash-success">{{ session('success') }}</p>
+        @endif
+        @if(session('error'))
+            <p class="flash-error">{{ session('error') }}</p>
+        @endif
 
-            {{-- Table --}}
-            <div class="table-container">
-                <table class="patient-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Date Of Birth</th>
-                            <th>Gender</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($patientData as $patient)
-                        <tr>
-                            <td>{{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</td>
-                            <td>{{ $patient->PatientDateOfBirth }}</td>
-                            <td>{{ $patient->PatientGender }}</td>
-                            <td>
-                                <a href="{{ route('showPatient', $patient->PatientID) }}">View</a> |
-                                <a href="{{ route('editPatient', $patient->PatientID) }}">Edit</a> |
-                                <form action="{{ route('deletePatient', $patient->PatientID) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+        {{-- Table Section --}}
+        <div class="table-container">
+            <table class="patient-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @forelse($patientData as $patient)
+                    <tr>
+                        <td>{{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</td>
+                        <td>{{ $patient->PatientDateOfBirth }}</td>
+                        <td>{{ $patient->PatientGender }}</td>
+                        <td class="actions">
+                            <a href="{{ route('showPatient', $patient->PatientID) }}">View</a> |
+                            <a href="{{ route('editPatient', $patient->PatientID) }}">Edit</a> |
+                            <form 
+                                action="{{ route('deletePatient', $patient->PatientID) }}" 
+                                method="POST" 
+                                style="display:inline;"
+                            >
+                                @csrf
+                                @method('DELETE')
+                                <button 
+                                    type="submit" 
+                                    onclick="return confirm('Are you sure you want to delete this patient?')"
+                                >
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" style="text-align:center; color:#777;">
+                            No patients found.
+                        </td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
 
-            <hr>
-            <button id="toggleAddPatientBtn" class="add-btn">➕ Add New Patient</button>
+        <hr>
 
+        {{-- Add Patient Button --}}
+        <button id="toggleAddPatientBtn" class="add-btn">➕ Add New Patient</button>
+
+        {{-- Add Patient Form (Collapsible) --}}
+        <div id="addPatientFormContainer" class="form-container">
             <form id="addPatientForm" action="{{ route('storePatient') }}" method="POST">
                 @csrf
                 <input type="text" name="PatientFirstName" placeholder="First Name" required>
@@ -86,10 +102,18 @@
             </form>
         </div>
     </div>
+</div>
 
-    @if(session('error'))
-        <p style="color: red;">{{ session('error') }}</p>
-    @endif
+{{-- Fallback Flash Error --}}
+@if(session('error'))
+    <p class="flash-error">{{ session('error') }}</p>
+@endif
 
-</body>
-</html>
+<script>
+    // Toggle form visibility with animation
+    document.getElementById('toggleAddPatientBtn').addEventListener('click', () => {
+        const container = document.getElementById('addPatientFormContainer');
+        container.classList.toggle('open');
+    });
+</script>
+@endsection
