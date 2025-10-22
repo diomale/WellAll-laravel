@@ -1,13 +1,57 @@
-.main-container {
-    margin-left: 220px;
-    padding: 20px;
+/* Layout setup */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f9f4;
+    display: flex;
 }
 
+/* Sidebar (uses your existing navigation) */
+.sidebar {
+    width: 200px;
+    background-color: #43a047;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.nav-box {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-box:hover {
+    background-color: #2e7d32;
+}
+
+.nav-box.active {
+    background-color: #1b5e20;
+    font-weight: bold;
+}
+
+/* Main container */
+.main-container {
+    flex-grow: 1;
+    padding: 30px;
+    margin-left: 220px;
+}
+
+/* Header */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.header h1 {
+    color: #2e7d32;
+    font-size: 28px;
 }
 
 .add-btn {
@@ -17,44 +61,71 @@
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
+    transition: background 0.3s;
 }
+
 .add-btn:hover {
     background-color: #2e7d32;
 }
 
+/* Add Doctor Form */
 .doctor-form {
-    background-color: #f9f9f9;
-    border-radius: 10px;
+    background-color: #ffffff;
     padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     margin-bottom: 30px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    margin-bottom: 15px;
+}
+
+.doctor-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .submit-btn {
-    background-color: #1b5e20;
+    background-color: #43a047;
     color: white;
-    padding: 10px 15px;
     border: none;
+    padding: 10px 15px;
     border-radius: 5px;
+    margin-top: 15px;
     cursor: pointer;
-}
-.submit-btn:hover {
-    background-color: #145a14;
+    transition: background 0.3s;
 }
 
+.submit-btn:hover {
+    background-color: #2e7d32;
+}
+
+/* Success & Error Messages */
+.success {
+    color: #2e7d32;
+    font-weight: bold;
+}
+.error {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+/* Table Section */
 .table-container {
-    background: white;
-    border-radius: 10px;
+    background-color: #ffffff;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table-container h2 {
+    color: #2e7d32;
+    margin-bottom: 15px;
 }
 
 .styled-table {
@@ -62,26 +133,60 @@
     border-collapse: collapse;
 }
 
-.styled-table th, .styled-table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+.styled-table th,
+.styled-table td {
+    padding: 12px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-.view-btn, .edit-btn, .delete-btn {
-    padding: 5px 10px;
-    border-radius: 4px;
+.styled-table th {
+    background-color: #43a047;
+    color: white;
+}
+
+.styled-table tr:hover {
+    background-color: #e8f5e9;
+}
+
+/* Buttons inside table */
+.view-btn,
+.edit-btn,
+.delete-btn {
     text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 5px;
     color: white;
     font-size: 14px;
 }
 
-.view-btn { background-color: #2196f3; }
-.edit-btn { background-color: #ffb300; }
-.delete-btn { background-color: #e53935; border: none; cursor: pointer; }
-.view-btn:hover { background-color: #1976d2; }
-.edit-btn:hover { background-color: #ffa000; }
-.delete-btn:hover { background-color: #c62828; }
+.view-btn {
+    background-color: #1b5e20;
+}
 
-.success { color: green; }
-.error { color: red; }
+.edit-btn {
+    background-color: #43a047;
+}
+
+.delete-btn {
+    background-color: #e53935;
+    border: none;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    background-color: #145a1b;
+}
+
+.edit-btn:hover {
+    background-color: #2e7d32;
+}
+
+.delete-btn:hover {
+    background-color: #c62828;
+}
+
+/* Delete form inline fix */
+.delete-form {
+    display: inline;
+}
