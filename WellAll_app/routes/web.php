@@ -65,6 +65,11 @@ Route::put('/doctors/{id}', [DoctorController::class, 'updateDoctor'])->name('up
 //////////Appointment routes//////////////
 
 
+
+// View specific appointment details
+Route::get('/appointments/view/{id}', [App\Http\Controllers\AppointmentController::class, 'view'])->name('AppointmentView');
+
+
 // Show all appointments
 Route::get('/appointments', [AppointmentController::class, 'showAllAppointments'])->name('AppointmentSection');
 

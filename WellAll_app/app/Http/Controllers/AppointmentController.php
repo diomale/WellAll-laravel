@@ -11,17 +11,31 @@ use App\Models\CheckIn;
 
 class AppointmentController extends Controller
 {
-    // Show all appointments 
-    public function showAllAppointments()
+    /** 
+     * Show all appointments 
+     */
+    public function showAllAppointments(Request $request)
     {
-        $appointments = Appointment::with(['patient', 'doctor'])->get();
-        $patients = Patient::all();
-        $doctors = Doctor::all();
+        $search = $request->input('search');
 
-        return view('AppointmentSection', compact('appointments', 'patients', 'doctors'));
+        $appointments = \App\Models\Appointment::with(['patient', 'doctor'])
+            ->when($search, function ($query, $search) {
+                $query->whereHas('patient', function ($q) use ($search) {
+                    $q->where('PatientFirstName', 'like', "%{$search}%")
+                    ->orWhere('PatientLastName', 'like', "%{$search}%");
+                });
+            })
+            ->get();
+
+        $patients = \App\Models\Patient::all();
+        $doctors = \App\Models\Doctor::all();
+
+        return view('AppointmentSection', compact('appointments', 'patients', 'doctors', 'search'));
     }
 
-    // Show form to create a new appointment 
+    /** 
+     * Show form to create a new appointment 
+     */
     public function createAppointment()
     {
         $patients = Patient::all();
@@ -31,7 +45,9 @@ class AppointmentController extends Controller
         return view('AppointmentSection', compact('patients', 'doctors', 'appointments'));
     }
 
-    // Store new appointment
+    /** 
+     * Store new appointment 
+     */
     public function storeAppointment(Request $request)
     {
         $request->validate([
@@ -42,14 +58,14 @@ class AppointmentController extends Controller
             'Reason' => 'required|string|max:255',
         ]);
 
-        
+        // Generate unique barcode (auto incrementing)
         $lastAppointment = Appointment::orderBy('AppointmentID', 'desc')->first();
         $nextNumber = $lastAppointment
             ? intval(substr($lastAppointment->AppointmentBarcodeID, 2, 5)) + 1
             : 1;
-        $AppointmentBarcodeID = '*' . 'A' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT) . '*';
+        $AppointmentBarcodeID = '*A' . str_pad($nextNumber, 5, '0', STR_PAD_LEFT) . '*';
 
-        
+        // Create appointment record
         $appointment = Appointment::create([
             'AppointmentBarcodeID' => $AppointmentBarcodeID,
             'PatientID' => $request->PatientID,
@@ -60,17 +76,31 @@ class AppointmentController extends Controller
             'DateCreated' => now(),
         ]);
 
-        
-        app(\App\Http\Controllers\QueueController::class)->addToQueue($appointment->AppointmentID);
+        // ✅ Automatically add to queue and check-in if those controllers exist
+        if (class_exists(\App\Http\Controllers\QueueController::class)) {
+            app(\App\Http\Controllers\QueueController::class)->addToQueue($appointment->AppointmentID);
+        }
 
-        
-        app(\App\Http\Controllers\CheckInController::class)->autoAddCheckIn($appointment->AppointmentID);
+        if (class_exists(\App\Http\Controllers\CheckInController::class)) {
+            app(\App\Http\Controllers\CheckInController::class)->autoAddCheckIn($appointment->AppointmentID);
+        }
 
         return redirect()->route('AppointmentSection')
             ->with('success', 'Appointment created and automatically added to queue and check-in!');
     }
 
-    
+    /** 
+     * Show single appointment 
+     */
+    public function view($id)
+    {
+        $appointment = Appointment::with(['patient', 'doctor'])->findOrFail($id);
+        return view('AppointmentView', compact('appointment'));
+    }
+
+    /** 
+     * Edit appointment form 
+     */
     public function editAppointment($id)
     {
         $appointment = Appointment::findOrFail($id);
@@ -80,17 +110,19 @@ class AppointmentController extends Controller
         return view('AppointmentEdit', compact('appointment', 'patients', 'doctors'));
     }
 
-    // Update appointment
+    /** 
+     * Update appointment 
+     */
     public function updateAppointment(Request $request, $id)
     {
         $appointment = Appointment::findOrFail($id);
 
         $request->validate([
-            'PatientID' => 'required',
-            'DoctorID' => 'required',
-            'AppointmentDate' => 'required',
-            'AppointmentTime' => 'required',
-            'Reason' => 'required',
+            'PatientID' => 'required|exists:patients_table,PatientID',
+            'DoctorID' => 'required|exists:doctors_table,DoctorID',
+            'AppointmentDate' => 'required|date',
+            'AppointmentTime' => 'required|date_format:H:i',
+            'Reason' => 'required|string|max:255',
         ]);
 
         $appointment->update([
@@ -105,12 +137,16 @@ class AppointmentController extends Controller
             ->with('success', 'Appointment updated successfully!');
     }
 
-    // Delete appointment and related queue + check-in
+    /** 
+     * Delete appointment (with related queue + check-in)
+     */
     public function deleteAppointment($id)
     {
-        \App\Models\CheckIn::where('AppointmentID', $id)->delete();
-        \App\Models\Queue::where('AppointmentID', $id)->delete();
+        // Delete related records first
+        CheckIn::where('AppointmentID', $id)->delete();
+        Queue::where('AppointmentID', $id)->delete();
 
+        // Then delete appointment
         $appointment = Appointment::findOrFail($id);
         $appointment->delete();
 

@@ -2,11 +2,6 @@
 
 @section('content')
 <div class="medical-section-container">
-    <div class="header-actions">
-        <h2>Medical Records</h2>
-        <a href="{{ route('medical-record.create') }}" class="btn add">+ Add Medical Record</a>
-    </div>
-
     {{-- Flash Messages --}}
     @if(session('success'))
         <div class="alert success">{{ session('success') }}</div>

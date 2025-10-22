@@ -20,7 +20,6 @@
         Queue
     </a>
 
-
     <a href="{{ route('CheckInSection') }}" 
         class="nav-box {{ request()->routeIs('CheckInSection') ? 'active' : '' }}">
         Check-In
