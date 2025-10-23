@@ -15,23 +15,22 @@ body {
 }
 
 .table-container{
+  border-radius: 16px;
   overflow-y: auto;
-  width: 160%;
+  width: 100%;
   height: 40vh;
-  max-width: 1100px;
+  background: #fff; 
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
 }
 
 /* === Page Container === */
 .content {
-  width: 400%;
+  width: 900%;
   height:55vh;
-  max-width: 1200px;
   margin: 140px auto;
-  background: #fff; 
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
 }
 
