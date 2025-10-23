@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/PatientViewStyle.css'])
-    <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap" rel="stylesheet">
     <title>Patient Details</title>
 </head>
-
 <body>
-    <main>
+    <main id="print-section">
         <h1>Patient: {{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</h1>
-
         <p class="barcode">{{ $patient->PatientBarcodeID }}</p>
 
         <div class="patient-info">
@@ -30,7 +28,23 @@
             </ul>
         </div>
 
+
+
         <a href="{{ route('PatientSection') }}">Back to Patient List</a>
     </main>
+
+<script>
+function printSection(sectionId) {
+    const printContent = document.getElementById(sectionId).innerHTML;
+    const originalContent = document.body.innerHTML;
+
+    // Add the font link to the print content
+    const fontLink = `<link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap" rel="stylesheet">`;
+    document.body.innerHTML = fontLink + printContent;
+
+    window.print();
+    document.body.innerHTML = originalContent;
+}
+</script>
 </body>
 </html>

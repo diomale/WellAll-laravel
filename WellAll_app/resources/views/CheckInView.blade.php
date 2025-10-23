@@ -2,7 +2,6 @@
 
 @section('content')
 @vite(['resources/css/CheckInViewStyle.css', 'resources/css/NavigationStyle.css'])
-
 <div class="container mt-4">
     <h2 class="mb-4 text-success text-center">Check-In Confirmation</h2>
 

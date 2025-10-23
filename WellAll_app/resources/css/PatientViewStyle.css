@@ -57,6 +57,8 @@ h1 {
 /* Barcode hidden by default */
 .barcode {
     display: none;
+    text-align: center; /* make sure it’s centered */
+    margin-top: 10px;
 }
 
 /* Back button */
@@ -76,29 +78,35 @@ a:hover {
     background-color: #2e7d32;
 }
 
-/* Print styles */
+
 @media print {
     body {
         background: white;
-        text-align: center;
         margin: 0;
         padding: 0;
+        text-align: center;
     }
 
-    main, a, ul {
+    /* Hide unnecessary stuff */
+    button, a, .patient-info {
         display: none !important;
+    }
+
+    /* Name + barcode centered vertically */
+    h1 {
+        display: block !important;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        margin-bottom: 5px;
     }
 
     .barcode {
         display: block !important;
-        font-family: 'Libre Barcode 39', monospace;
-        font-size: 48px;
-        margin-top: 200px;
-    }
-
-    h1 {
-        font-size: 28px;
-        margin-bottom: 20px;
+        font-family: 'Libre Barcode 39', cursive;
+        font-size: 36px;
+        color: black;
         text-align: center;
+        margin-top: 0; /* ensure it's directly below the name */
     }
 }

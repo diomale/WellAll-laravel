@@ -219,3 +219,8 @@ body {
     width: 100%;
   }
 }
+@media print {
+    button {
+        display: none;
+    }
+}
