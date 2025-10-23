@@ -17,48 +17,52 @@
 
 <div class="content">
     <h2>Existing Appointments</h2>
-    <table border="1" cellpadding="6">
-        <thead>
-            <tr>
-                <th>Barcode</th>
-                <th>Patient</th>
-                <th>Doctor</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Reason</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($appointments as $appointment)
+    <div class="table-container">
+        <table border="1" cellpadding="6">
+            <thead>
                 <tr>
-                    <td>{{ $appointment->AppointmentBarcodeID }}</td>
-                    <td>{{ $appointment->patient->PatientFirstName }} {{ $appointment->patient->PatientLastName }}</td>
-                    <td>Dr. {{ $appointment->doctor->DoctorFirstName }} {{ $appointment->doctor->DoctorLastName }}</td>
-                    <td>{{ $appointment->AppointmentDate }}</td>
-                    <td>{{ $appointment->AppointmentTime }}</td>
-                    <td>{{ $appointment->Reason }}</td>
-                    <td>
-                        <a href="{{ route('AppointmentView', $appointment->AppointmentID) }}">View</a>
-                        <a href="{{ route('AppointmentEdit', $appointment->AppointmentID) }}">Edit</a>
-                        <form action="{{ route('AppointmentDelete', $appointment->AppointmentID) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Delete this appointment?')">Delete</button>
-                        </form>
-                    </td>
+                    <th>Barcode</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Actions</th>
                 </tr>
-            @endforeach
-        </tbody>
-        @if($appointments->isEmpty())
-            <tr>
-                <td colspan="7" style="text-align:center; color:gray;">No appointments found.</td>
-            </tr>
-        @endif
+            </thead>
+            <tbody>
+                @foreach($appointments as $appointment)
+                    <tr>
+                        <td>{{ $appointment->AppointmentBarcodeID }}</td>
+                        <td>{{ $appointment->patient->PatientFirstName }} {{ $appointment->patient->PatientLastName }}</td>
+                        <td>Dr. {{ $appointment->doctor->DoctorFirstName }} {{ $appointment->doctor->DoctorLastName }}</td>
+                        <td>{{ $appointment->AppointmentDate }}</td>
+                        <td>{{ $appointment->AppointmentTime }}</td>
+                        <td>{{ $appointment->Reason }}</td>
+                        <td class="actions-cell">
+                            <a href="{{ route('AppointmentView', $appointment->AppointmentID) }}" class="btn-action btn-view">View</a>
+                            <a href="{{ route('AppointmentEdit', $appointment->AppointmentID) }}" class="btn-action btn-edit">Edit</a>
 
-    </table>
+                            <form action="{{ route('AppointmentDelete', $appointment->AppointmentID) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-action btn-delete" onclick="return confirm('Delete this appointment?')">Delete</button>
+                            </form>
+                        </td>
 
-    <hr>
+                    </tr>
+                @endforeach
+            </tbody>
+            @if($appointments->isEmpty())
+                <tr>
+                    <td colspan="7" style="text-align:center; color:gray;">No appointments found.</td>
+                </tr>
+            @endif
+
+        </table>
+    </div>
+ <br><br><br><br>
+ <br>
 
     <button id="toggleAppointmentForm" type="button" style="margin-bottom: 15px; padding: 8px 15px; background-color: #43a047; color: white; border: none; border-radius: 5px; cursor: pointer;">
         Make a appointment
