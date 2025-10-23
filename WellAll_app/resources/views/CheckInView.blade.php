@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+@vite(['resources/css/CheckInViewStyle.css', 'resources/css/NavigationStyle.css'])
+
 <div class="container mt-4">
     <h2 class="mb-4 text-success text-center">Check-In Confirmation</h2>
 
-    {{--  Flash message --}}
+    {{-- Flash message --}}
     @if(session('success'))
         <div class="alert alert-success text-center">{{ session('success') }}</div>
     @endif
@@ -19,8 +21,8 @@
                 <p><strong>Appointment Date:</strong> {{ \Carbon\Carbon::parse($appointment->AppointmentDate)->format('F d, Y') }}</p>
                 <p><strong>Status:</strong>
                     <span class="badge 
-                        @if($appointment->Status === 'Checked-In') bg-success
-                        @elseif($appointment->Status === 'Done') bg-primary
+                        @if(strtolower(trim($appointment->Status)) === 'checked-in') bg-success
+                        @elseif(strtolower(trim($appointment->Status)) === 'done') bg-primary
                         @else bg-secondary
                         @endif">
                         {{ $appointment->Status }}
@@ -29,34 +31,38 @@
             </div>
         </div>
 
-        {{--  Actions based on appointment status --}}
-        @if($appointment->Status === 'Pending')
+        {{-- Actions based on appointment status --}}
+        @php
+            $status = strtolower(trim($appointment->Status));
+        @endphp
+
+        @if($status === 'pending')
             <form action="{{ route('appointments.checkin.confirm', $appointment->AppointmentID) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-success w-100">
-                     Confirm Check-In
+                    Confirm Check-In
                 </button>
             </form>
 
-        @elseif($appointment->Status === 'Checked-In')
-            <div class="alert alert-info text-center">
+        @elseif($status === 'checked-in')
+            <div class="alert alert-info text-center mt-3">
                 This patient is already checked in.
             </div>
             <div class="text-center mt-3">
                 <a href="{{ route('MedicalRecordAdd', $appointment->AppointmentID) }}" class="btn btn-primary">
-                     Add Medical Record
+                    Add Medical Record
                 </a>
             </div>
 
-        @elseif($appointment->Status === 'Done')
-            <div class="alert alert-secondary text-center">
-                 Medical record completed for this appointment.
+        @elseif($status === 'done')
+            <div class="alert alert-secondary text-center mt-3">
+                Medical record completed for this appointment.
             </div>
         @endif
 
     @else
         <div class="alert alert-warning text-center">
-             No appointment found for this barcode.
+            No appointment found for this barcode.
         </div>
     @endif
 </div>

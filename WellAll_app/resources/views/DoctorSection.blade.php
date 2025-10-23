@@ -35,7 +35,6 @@
         <table class="styled-table">
             <thead>
                 <tr>
-                    <th>Doctor Code</th>
                     <th>Name</th>
                     <th>Specialization</th>
                     <th>Availability</th>
@@ -46,7 +45,6 @@
             <tbody>
                 @foreach($doctors as $doctor)
                 <tr>
-                    <td>{{ $doctor->DoctorBarcode }}</td>
                     <td>Dr. {{ $doctor->DoctorFirstName }} {{ $doctor->DoctorLastName }}</td>
                     <td>{{ $doctor->Specialization }}</td>
                     <td>{{ $doctor->DoctorAvailability }}</td>
