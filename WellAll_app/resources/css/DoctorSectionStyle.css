@@ -161,3 +161,53 @@ body {
 .delete-form {
     display: inline;
 }
+.section-divider {
+    border: none;
+    border-top: 2px solid #e0e0e0;
+    margin: 40px 0 30px 0;
+}
+
+.add-doctor-section {
+    text-align: left;
+}
+/* Buttons inside patient table — same style as doctor section */
+.view-btn,
+.edit-btn,
+.delete-btn {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+}
+
+/* View button: dark green */
+.view-btn {
+    background-color: #1b5e20;
+}
+.view-btn:hover {
+    background-color: #145a1b;
+}
+
+/* Edit button: lighter green */
+.edit-btn {
+    background-color: #43a047;
+}
+.edit-btn:hover {
+    background-color: #2e7d32;
+}
+
+/* Delete button: red */
+.delete-btn {
+    background-color: #e53935;
+    border: none;
+    cursor: pointer;
+}
+.delete-btn:hover {
+    background-color: #c62828;
+}
+
+/* Keep the delete form inline */
+.delete-form {
+    display: inline;
+}
