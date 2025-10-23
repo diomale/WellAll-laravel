@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/PatientViewStyle.css'])
     <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
+    <title>Patient Details</title>
 </head>
 
 <body>
-    <div class="content">
+    <main>
         <h1>Patient: {{ $patient->PatientFirstName }} {{ $patient->PatientLastName }}</h1>
 
         <p class="barcode">{{ $patient->PatientBarcodeID }}</p>
@@ -29,10 +30,7 @@
             </ul>
         </div>
 
-        <br>
         <a href="{{ route('PatientSection') }}">Back to Patient List</a>
-    </div>
-
+    </main>
 </body>
-
 </html>

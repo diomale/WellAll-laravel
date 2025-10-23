@@ -1,66 +1,74 @@
+/* Clean centered layout */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #f9f9f9;
     margin: 0;
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
 }
 
-/* Sidebar stays on the left */
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    width: 200px;
-    background-color: #43a047;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Main content area */
-.content {
-    margin-left: 250px;
+/* Outer white box */
+main {
+    background-color: white;
     padding: 40px;
-    flex-grow: 1;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    margin-top: 60px;
 }
 
+/* Title */
 h1 {
-    color: #2e7d32;
+    color: #1b5e20;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Inner light-gray info box */
+.patient-info {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
     margin-bottom: 20px;
 }
 
-/* Patient info box */
-.patient-info {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    width: 500px;
-}
-
+/* Patient info list */
 .patient-info ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .patient-info li {
     padding: 8px 0;
     border-bottom: 1px solid #e0e0e0;
+    font-size: 16px;
+    color: #333;
 }
 
 .patient-info li:last-child {
     border-bottom: none;
 }
 
-/* Buttons */
+/* Barcode hidden by default */
+.barcode {
+    display: none;
+}
+
+/* Back button */
 a {
-    text-decoration: none;
-    color: white;
+    display: inline-block;
     background-color: #43a047;
-    padding: 8px 15px;
-    border-radius: 5px;
-    margin-right: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
     transition: background 0.3s;
 }
 
@@ -68,20 +76,16 @@ a:hover {
     background-color: #2e7d32;
 }
 
-/* Hide barcode in view mode */
-.barcode {
-    display: none;
-}
-
-/* PRINT STYLES */
+/* Print styles */
 @media print {
     body {
-        text-align: center;
-        margin: 100px auto;
         background: white;
+        text-align: center;
+        margin: 0;
+        padding: 0;
     }
 
-    .sidebar, .content a, ul {
+    main, a, ul {
         display: none !important;
     }
 
@@ -89,42 +93,12 @@ a:hover {
         display: block !important;
         font-family: 'Libre Barcode 39', monospace;
         font-size: 48px;
+        margin-top: 200px;
     }
 
     h1 {
-        font-size: 30px;
-        margin-bottom: 40px;
-    }
-}
-@media print {
-    /* Hide sidebar completely when printing */
-    .sidebar {
-        display: none !important;
-    }
-
-    /* Recenter printed content */
-    body {
-        margin: 0;
-        padding: 0;
+        font-size: 28px;
+        margin-bottom: 20px;
         text-align: center;
-        font-size: 18px;
-    }
-
-    /* Make the printed content centered properly */
-    h1 {
-        margin-top: 50px;
-        font-size: 24px;
-        text-align: center;
-    }
-
-    p {
-        font-family: 'Libre Barcode 39', monospace;
-        font-size: 48px;
-        text-align: center;
-        margin-top: 30px;
-    }
-
-    ul, a, title {
-        display: none !important;
     }
 }
