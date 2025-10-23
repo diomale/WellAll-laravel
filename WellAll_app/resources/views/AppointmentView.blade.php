@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Appointment Details</title>
-    @vite(['resources/css/NavigationStyle.css', 'resources/js/app.js'])
+    @vite(['resources/css/NavigationStyle.css','resources/css/AppointmentViewStyle.css', 'resources/js/app.js'])
     <link href='https://fonts.googleapis.com/css?family=Libre Barcode 39' rel='stylesheet'>
 </head>
 <body>
 
-    <div class="content">
+     <div class="content" id="printArea">
         <h1>Appointment Details</h1>
 
         <p style="font-family: 'Libre Barcode 39';font-size: 22px;">{{ $appointment->AppointmentBarcodeID }}</p>
@@ -22,7 +22,22 @@
         <p><strong>Reason:</strong> {{ $appointment->Reason }}</p>
 
         <hr>
-        <a href="{{ route('AppointmentSection') }}">← Back to Appointments</a>
+
+        <div class="button-group">
+            <a href="{{ route('AppointmentSection') }}" class="btn-back">← Back to Appointments</a>
+            <button type="button" onclick="printAppointment()" class="btn-print">🖨 Print</button>
+        </div>
     </div>
+
+    <script>
+        function printAppointment() {
+            const printContents = document.getElementById('printArea').innerHTML;
+            const originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload(); // reload to restore event handlers
+        }
+    </script>
 </body>
 </html>

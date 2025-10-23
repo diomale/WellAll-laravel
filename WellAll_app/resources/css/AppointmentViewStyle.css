@@ -1,0 +1,207 @@
+/* === Global Page Reset === */
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: #f5f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Page Content Container === */
+.content {
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto;
+    background: #ffffff;
+    padding: 40px 50px;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease-in-out;
+}
+
+.content:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+/* === Title === */
+h1 {
+    color: #2e7d32;
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #43a047;
+    padding-bottom: 10px;
+}
+
+/* === Barcode Style === */
+p[style*="Libre Barcode 39"] {
+    display: block;
+    text-align: center;
+    background-color: #e8f5e9;
+    border: 1px dashed #81c784;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 15px 0;
+    color: #2e7d32;
+}
+
+/* === Appointment Details Text === */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+p strong {
+    color: #2e7d32;
+}
+
+/* === Divider === */
+hr {
+    border: none;
+    height: 1px;
+    background-color: #c8e6c9;
+    margin: 25px 0;
+}
+
+/* === Back Link === */
+a {
+    display: inline-block;
+    background-color: #43a047;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+    background-color: #2e7d32;
+    transform: scale(1.05);
+}
+
+/* === Responsive Design === */
+@media (max-width: 600px) {
+    .content {
+        width: 95%;
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+}
+
+
+
+
+
+/* === Button Group === */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+/* === Back Button === */
+.btn-back {
+    background-color: #43a047;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-back:hover {
+    background-color: #2e7d32;
+    transform: scale(1.05);
+}
+
+/* === Print Button === */
+.btn-print {
+    background-color: #388e3c;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-print:hover {
+    background-color: #1b5e20;
+    transform: scale(1.05);
+}
+
+/* === Print Styles (When Printing) === */
+@media print {
+    body {
+        background: #fff;
+        color: #000;
+        font-family: "Arial", sans-serif;
+    }
+
+    /* Center content on page */
+    .content {
+        box-shadow: none;
+        border: none;
+        margin: 0 auto;
+        padding: 0;
+        width: 80%;
+        text-align: center;
+    }
+
+    /* Header */
+    h1 {
+        color: #000;
+        border: none;
+        margin-bottom: 10px;
+    }
+
+    /* Barcode styling — big and scannable */
+    p[style*="Libre Barcode 39"] {
+        display: block;
+        text-align: center;
+        font-size: 60px !important; /* Bigger for scanners */
+        color: #000 !important;
+        background: none !important;
+        border: none !important;
+        margin: 20px 0;
+    }
+
+    /* Details section (Barcode → Reason) */
+    p {
+        color: #000 !important;
+        font-size: 16px;
+        text-align: left;
+        margin: 6px 0;
+    }
+
+    p strong {
+        color: #000 !important;
+    }
+
+    /* Keep layout tidy on paper */
+    hr {
+        border: none;
+        height: 1px;
+        background-color: #000;
+        margin: 20px 0;
+    }
+
+    /* Hide navigation & buttons */
+    .button-group,
+    .btn-print,
+    .btn-back {
+        display: none !important;
+    }
+}

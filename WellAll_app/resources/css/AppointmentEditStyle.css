@@ -1,0 +1,139 @@
+/* === General Page Styling === */
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: #f5f7f6;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Card Container === */
+.content {
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto;
+    background: #ffffff;
+    padding: 40px 50px;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease-in-out;
+}
+
+.content:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+/* === Headers === */
+h1 {
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #43a047;
+    padding-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+/* === Error Message Box === */
+.error-box {
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 5px solid #e53935;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+/* === Form Layout === */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+    padding: 10px;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #43a047;
+    box-shadow: 0 0 6px rgba(67, 160, 71, 0.4);
+    outline: none;
+}
+
+/* === Button Group === */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+/* === Buttons === */
+.btn-save {
+    background-color: #43a047;
+    color: #fff;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-save:hover {
+    background-color: #2e7d32;
+    transform: scale(1.05);
+}
+
+.btn-cancel {
+    background-color: #a5d6a7;
+    color: #1b5e20;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #81c784;
+    transform: scale(1.05);
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+    .content {
+        padding: 25px;
+        width: 95%;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-save,
+    .btn-cancel {
+        width: 100%;
+        text-align: center;
+    }
+}
