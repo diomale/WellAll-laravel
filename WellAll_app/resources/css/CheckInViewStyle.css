@@ -1,0 +1,88 @@
+/* Check-In Confirmation Page Styles */
+.container {
+    max-width: 700px;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-weight: 700;
+    color: #198754; /* Bootstrap success green */
+    margin-bottom: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    background: #f9f9f9;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-weight: 600;
+    border-bottom: 2px solid #198754;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+strong {
+    color: #000;
+}
+
+.badge {
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #157347;
+    transform: scale(1.02);
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: scale(1.02);
+}
+
+.alert {
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 15px;
+}
+
+.text-center a.btn {
+    width: 100%;
+    max-width: 300px;
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
