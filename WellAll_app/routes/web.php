@@ -6,6 +6,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\QueueController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CheckInController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MedicalRecordController;
 
 // Dashboard
@@ -14,7 +15,7 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 
-
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 // Redirect root to dashboard
 Route::redirect('/', '/dashboard')->name('dashboard.index');
 
