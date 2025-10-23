@@ -1,0 +1,44 @@
+/* Container spacing */
+.container.mt-4 {
+    margin-top: 1.5rem;
+}
+
+/* Table styles */
+.table {
+    width: 100%;
+    border-collapse: separate; /* important for border-radius */
+    border-spacing: 0;
+    border-radius: 12px; /* round corners */
+    overflow: hidden; /* make rounded corners apply */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* optional subtle shadow */
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    text-align: left;
+}
+
+/* Rounded header */
+.table thead tr {
+    background-color: #d4edda; /* same as .table-success */
+    color: #155724;
+}
+
+.table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+/* Rounded bottom corners */
+.table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+.table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12p
+}
