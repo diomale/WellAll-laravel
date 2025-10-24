@@ -5,7 +5,7 @@
 <div class="container mt-4">
     <h2 class="mb-3 text-center text-success">Check-In Section</h2>
 
-    {{--  Flash Messages --}}
+    {{-- Flash Messages --}}
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -13,7 +13,7 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
 
-    {{--  Barcode Search --}}
+    {{-- Barcode Search --}}
     <form action="{{ route('checkin.search') }}" method="POST" class="d-flex justify-content-center mb-4">
         @csrf
         <input type="text" name="barcode" class="form-control w-50 me-2" placeholder="Scan or enter appointment barcode..." required autofocus>
@@ -22,7 +22,7 @@
 
     <hr>
 
-    {{--  Check-In Table --}}
+    {{-- Check-In Table --}}
     <table class="table table-bordered table-hover align-middle">
         <thead class="table-success">
             <tr>
@@ -35,6 +35,10 @@
         </thead>
         <tbody>
             @forelse($checkins as $checkin)
+                @php
+                    // Use the appointment's Status instead of the check-in table
+                    $status = $checkin->appointment->Status ?? 'N/A';
+                @endphp
                 <tr>
                     <td>{{ $checkin->CheckInID }}</td>
                     <td>{{ $checkin->patient->PatientFirstName }} {{ $checkin->patient->PatientLastName }}</td>
@@ -43,14 +47,14 @@
                         {{ \Carbon\Carbon::parse($checkin->CheckInTime)->format('F d, Y - h:i A') }}
                     </td>
                     <td>
-                        @if($checkin->Status === 'Pending')
+                        @if($status === 'Pending')
                             <span class="badge bg-warning text-dark">Pending</span>
-                        @elseif($checkin->Status === 'Checked-In')
+                        @elseif($status === 'Checked-In')
                             <span class="badge bg-info text-dark">Checked-In</span>
-                        @elseif($checkin->Status === 'Done')
+                        @elseif($status === 'Done')
                             <span class="badge bg-success">Done</span>
                         @else
-                            <span class="badge bg-secondary">{{ $checkin->Status ?? 'N/A' }}</span>
+                            <span class="badge bg-secondary">{{ $status }}</span>
                         @endif
                     </td>
                 </tr>
@@ -62,6 +66,7 @@
         </tbody>
     </table>
 </div>
+
 <style>
     .badge {
         padding: 6px 10px;
