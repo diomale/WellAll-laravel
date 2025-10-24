@@ -30,8 +30,9 @@ export default defineConfig({
 
                 'resources/css/MedicalRecordSectionStyle.css',
                 'resources/css/MedicalRecordAddStyle.css',
-                'resources/css/MedicalEditViewStyle.css',
-                 
+                'resources/css/MedicalRecordViewStyle.css',
+                'resources/css/MedicalRecordEditStyle.css',
+
                 ],
             refresh: true,
         }),
