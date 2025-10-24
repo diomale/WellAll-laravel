@@ -1,0 +1,114 @@
+/* ==== General Page Layout ==== */
+body {
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==== Container ==== */
+.container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ==== Title ==== */
+h2 {
+    font-weight: 700;
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ==== Success Message ==== */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+/* ==== Table Styles ==== */
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #a5d6a7; /* soft green */
+    color: #1b5e20;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    border: none;
+}
+
+.table td {
+    vertical-align: middle;
+    font-size: 15px;
+    color: #333;
+}
+
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #ddd;
+}
+
+/* Row hover effect */
+.table tbody tr:hover {
+    background-color: #f1f8e9;
+}
+
+/* ==== Dropdown ==== */
+select.form-select {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+select.form-select:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+/* ==== Buttons ==== */
+button.btn-success {
+    background-color: #43a047;
+    border: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+button.btn-success:hover {
+    background-color: #2e7d32;
+}
+
+/* ==== Empty State ==== */
+.text-muted {
+    color: #777 !important;
+    font-style: italic;
+}
+
+/* ==== Card Styling ==== */
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ==== Table header shadow ==== */
+.table thead {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
