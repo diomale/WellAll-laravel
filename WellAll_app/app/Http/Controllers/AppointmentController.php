@@ -58,7 +58,7 @@ class AppointmentController extends Controller
             'Reason' => 'required|string|max:255',
         ]);
 
-        // Generate unique barcode (auto incrementing)
+        // Generate unique barcode
         $lastAppointment = Appointment::orderBy('AppointmentID', 'desc')->first();
         $nextNumber = $lastAppointment
             ? intval(substr($lastAppointment->AppointmentBarcodeID, 2, 5)) + 1
@@ -76,7 +76,7 @@ class AppointmentController extends Controller
             'DateCreated' => now(),
         ]);
 
-        // ✅ Automatically add to queue and check-in if those controllers exist
+        //Automatically add to queue and check-in if those controllers exist
         if (class_exists(\App\Http\Controllers\QueueController::class)) {
             app(\App\Http\Controllers\QueueController::class)->addToQueue($appointment->AppointmentID);
         }

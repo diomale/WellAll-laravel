@@ -24,11 +24,18 @@ class CheckInController extends Controller
    
     public function searchByBarcode(Request $request)
     {
-        $barcode = $request->input('barcode');
+        $barcode = trim($request->input('barcode'));
+        $cleanBarcode = str_replace('*', '', $barcode);
 
+        if (empty($cleanBarcode)) {
+            return redirect()->route('CheckInSection')
+                ->with('error', 'Please enter a barcode.');
+        }
 
+        
         $appointment = Appointment::with(['patient', 'doctor'])
             ->where('AppointmentBarcodeID', $barcode)
+            ->orWhere('AppointmentBarcodeID', "*{$cleanBarcode}*")
             ->first();
 
         if (!$appointment) {
@@ -36,9 +43,10 @@ class CheckInController extends Controller
                 ->with('error', 'No appointment found with that barcode.');
         }
 
-       
+        
         return view('CheckInView', compact('appointment'));
     }
+
 
     // Confirm check-in 
     public function confirmCheckIn($appointmentID)

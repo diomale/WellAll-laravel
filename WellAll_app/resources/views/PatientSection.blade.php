@@ -5,7 +5,6 @@
 <div class="container">
     {{-- Main content beside sidebar --}}
     <div class="main-content">
-        <h1>All Patients</h1>
 
         {{-- Search Bar --}}
         <div class="card mb-4 shadow-sm">
@@ -22,6 +21,8 @@
                 </form>
             </div>
         </div>
+
+        <h1>All Patients</h1>
         
         {{-- Flash Messages --}}
         @if(session('success'))
@@ -49,8 +50,8 @@
                         <td>{{ $patient->PatientDateOfBirth }}</td>
                         <td>{{ $patient->PatientGender }}</td>
                         <td class="actions">
-                            <a href="{{ route('showPatient', $patient->PatientID) }}">View</a> |
-                            <a href="{{ route('editPatient', $patient->PatientID) }}">Edit</a> |
+                            <a href="{{ route('showPatient', $patient->PatientID) }}" class="viewbut"> View </a>
+                            <a href="{{ route('editPatient', $patient->PatientID) }}" class="editbut"> Edit </a>
                             <form 
                                 action="{{ route('deletePatient', $patient->PatientID) }}" 
                                 method="POST" 

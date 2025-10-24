@@ -4,10 +4,10 @@
 @vite(['resources/css/NavigationStyle.css', 'resources/css/DoctorSectionStyle.css'])
 
 <div class="main-container-doctor">
-    <h1>Doctors</h1>
+    <h1>All Doctors</h1>
 
     <div class="table-container">
-        <h2>Doctor List</h2>
+        
         <table class="styled-table">
             <thead>
                 <tr>
