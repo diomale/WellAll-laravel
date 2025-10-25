@@ -20,6 +20,7 @@ class CheckIn extends Model
         'CheckInTime',
         'CheckInRemarks',
         'CheckInDateCreated',
+        'Status'
     ];
 
     public function patient()

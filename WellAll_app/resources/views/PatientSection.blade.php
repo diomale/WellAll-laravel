@@ -22,6 +22,8 @@
                 </form>
             </div>
         </div>
+
+        <h1>All Patients</h1>
         
         {{-- Flash Messages --}}
         @if(session('success'))

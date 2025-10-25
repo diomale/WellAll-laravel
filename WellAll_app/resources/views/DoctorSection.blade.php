@@ -5,7 +5,7 @@
 
 <div class="main-container-doctor">
     <div class="table-container">
-        <h2>Doctor List</h2>
+        
         <table class="styled-table">
             <thead>
                 <tr>

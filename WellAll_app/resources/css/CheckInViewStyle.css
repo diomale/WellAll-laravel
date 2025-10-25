@@ -145,3 +145,14 @@ a.btn {
 .card-body:hover {
     box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
 }
+.main-content {
+    margin-left: 220px; /* match sidebar width */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: #f3faf3;
+    padding: 40px 0;
+    position: relative;
+    left: -110px; /* shift half sidebar width back left to re-center */
+}

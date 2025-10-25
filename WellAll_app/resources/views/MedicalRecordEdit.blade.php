@@ -1,6 +1,7 @@
 @extends('layouts.app') {{-- remove this line if you’re not using a layout --}}
-
+@vite(['resources/css/MedicalRecordEditStyle.css', 'resources/css/NavigationStyle.css'])
 @section('content')
+
 <div class="container mt-4">
     <h2 class="mb-4 text-success">Edit Medical Record</h2>
 

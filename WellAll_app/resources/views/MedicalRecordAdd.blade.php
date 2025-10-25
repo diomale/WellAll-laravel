@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@vite(['resources/css/MedicalRecordAddStyle.css', 'resources/css/NavigationStyle.css'])
 <div class="container">
     <h2>Add Medical Record</h2>
     <div class="card mt-3">
