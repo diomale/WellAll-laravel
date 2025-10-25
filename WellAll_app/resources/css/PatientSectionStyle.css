@@ -21,20 +21,17 @@ body {
 .main-content h1 {
   color: #2e7d32;
   font-size: 32px;
-  text-align: center;
-  margin-bottom: 25px;
+  text-align: left;
+  margin-bottom: -40px;
 }
 
 /* === Search Bar Section === */
 .card {
-  background-color: #e8f5e9;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
   margin-bottom: 25px;
   max-width: 700px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 0px;
 }
 
 .card-body {
@@ -94,6 +91,16 @@ body {
 .patient-table td {
   padding: 12px 15px;
   border-bottom: 1px solid #d7ecd7;
+  vertical-align: middle;      /* centers content vertically */
+  text-align: left;            /* aligns all text neatly to the left */
+}
+
+/* Center the Actions column */
+.patient-table td.actions {
+  text-align: center;
+}
+.patient-table th:nth-child(4) {
+  text-align: center;
 }
 
 .patient-table th {
@@ -224,3 +231,99 @@ body {
         display: none;
     }
 }
+
+#addPatientForm select {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #a8e6a3;
+  background-color: #f6fff6;
+  font-size: 1rem;
+  color: #063d06;
+  cursor: pointer;
+  appearance: none; /* remove default arrow for consistent styling */
+  background-image: linear-gradient(45deg, transparent 50%, #2e7d32 50%), 
+                    linear-gradient(135deg, #2e7d32 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 4px), 
+                      calc(100% - 15px) calc(1em + 4px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+#addPatientForm select:focus {
+  border-color: #43a047;
+  outline: none;
+  box-shadow: 0 0 5px #a5d6a7;
+}
+
+
+/* === Action Buttons in Table === */
+.actions {
+  display: flex;
+  justify-content: center;  /* center the buttons horizontally */
+  align-items: center;       /* center vertically within the cell */
+  gap: 8px;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.btn-action {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+/* View Button */
+.btn-action.view {
+  background-color: #1b5e20;
+  color: white;
+}
+.btn-action.view:hover {
+  background-color: #2e7d32;
+  color: white;
+}
+
+/* Edit Button */
+.btn-action.edit {
+  background-color: #43a047;
+  color: white;
+}
+.btn-action.edit:hover {
+  background-color:#2e7d32;
+  color: white;
+}
+
+/* Delete Button */
+.btn-action.delete {
+  background-color: #e53935;
+  color: white;
+}
+.btn-action.delete:hover {
+  background-color: #b71c1c;
+  color: white ;
+}
+
+/* Responsive alignment */
+@media (max-width: 600px) {
+  .actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .btn-action {
+    width: 100%;
+    text-align: center;
+  }
+}
+

@@ -5,7 +5,7 @@
 <div class="container">
     {{-- Main content beside sidebar --}}
     <div class="main-content">
-        <h1>All Patients</h1>
+        <h1 class="allp">All Patients</h1>
 
         {{-- Search Bar --}}
         <div class="card mb-4 shadow-sm">
@@ -49,8 +49,8 @@
                         <td>{{ $patient->PatientDateOfBirth }}</td>
                         <td>{{ $patient->PatientGender }}</td>
                         <td class="actions">
-                            <a href="{{ route('showPatient', $patient->PatientID) }}">View</a> |
-                            <a href="{{ route('editPatient', $patient->PatientID) }}">Edit</a> |
+                            <a href="{{ route('showPatient', $patient->PatientID) }}" class="btn-action view">View</a>
+                            <a href="{{ route('editPatient', $patient->PatientID) }}" class="btn-action edit">Edit</a>
                             <form 
                                 action="{{ route('deletePatient', $patient->PatientID) }}" 
                                 method="POST" 
@@ -60,12 +60,14 @@
                                 @method('DELETE')
                                 <button 
                                     type="submit" 
+                                    class="btn-action delete"
                                     onclick="return confirm('Are you sure you want to delete this patient?')"
                                 >
                                     Delete
                                 </button>
                             </form>
                         </td>
+
                     </tr>
                 @empty
                     <tr>
@@ -90,10 +92,26 @@
                 <input type="text" name="PatientFirstName" placeholder="First Name" required>
                 <input type="text" name="PatientLastName" placeholder="Last Name" required>
                 <input type="date" name="PatientDateOfBirth" required>
-                <input type="text" name="PatientGender" placeholder="Gender" required>
+                <select name="PatientGender" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
                 <input type="text" name="PatientContactNumber" placeholder="Contact Number">
                 <input type="text" name="PatientAddress" placeholder="Address">
-                <input type="text" name="PatientBloodType" placeholder="Blood Type">
+                <select name="PatientBloodType" required>
+                    <option value="" disabled selected>Select Blood Type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A−</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B−</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB−</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O−</option>
+                </select>
+
                 <input type="text" name="PatientAllergies" placeholder="Allergies">
                 <input type="text" name="PatientExistingConditions" placeholder="Existing Conditions">
                 <input type="text" name="PatientEmergencyContact" placeholder="Emergency Contact">
