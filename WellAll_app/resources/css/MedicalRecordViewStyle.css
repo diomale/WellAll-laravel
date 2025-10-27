@@ -91,7 +91,6 @@ hr {
     transform: scale(1.02);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .main-content {
         margin-left: 0;
@@ -105,5 +104,55 @@ hr {
 
     h2 {
         font-size: 20px;
+    }
+
+    .btn-secondary {
+        font-size: 15px;
+        padding: 12px 0;
+    }
+}
+
+/* === Print Layout === */
+@media print {
+    body {
+        background: white;
+        color: #000;
+        font-family: 'Times New Roman', serif;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .main-content {
+        margin: 0;
+        padding: 0;
+        left: 0;
+        background: none;
+        justify-content: flex-start;
+    }
+
+    .container {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 20px 40px;
+        width: 100%;
+        max-width: none;
+    }
+
+    .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        page-break-inside: avoid;
+    }
+
+    h2, h4 {
+        color: #000;
+    }
+
+    .btn-secondary {
+        display: none; /* hide buttons when printing */
+    }
+
+    hr {
+        border-top: 1px solid #999;
     }
 }

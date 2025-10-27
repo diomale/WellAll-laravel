@@ -148,49 +148,55 @@ a:hover {
         background: #fff;
         color: #000;
         font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 20px;
     }
 
-    /* Center content on page */
+    /* Center content on page with balanced margins */
     .content {
         box-shadow: none;
         border: none;
-        margin: 0 auto;
-        padding: 0;
-        width: 80%;
-        text-align: center;
+        margin: 40px auto;
+        padding: 20px 30px;
+        width: 70%;
+        text-align: left;
     }
 
     /* Header */
     h1 {
         color: #000;
         border: none;
-        margin-bottom: 10px;
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 20px;
+        padding-bottom: 0;
     }
 
-    /* Barcode styling — big and scannable */
+    /* Barcode styling — larger and high contrast for scanners */
     p[style*="Libre Barcode 39"] {
         display: block;
         text-align: center;
-        font-size: 60px !important; /* Bigger for scanners */
+        font-size: 70px !important; /* Bigger for scanners */
         color: #000 !important;
         background: none !important;
         border: none !important;
-        margin: 20px 0;
+        margin: 25px 0;
     }
 
     /* Details section (Barcode → Reason) */
     p {
         color: #000 !important;
         font-size: 16px;
+        line-height: 1.8;
+        margin: 8px 0;
         text-align: left;
-        margin: 6px 0;
     }
 
     p strong {
         color: #000 !important;
     }
 
-    /* Keep layout tidy on paper */
+    /* Divider */
     hr {
         border: none;
         height: 1px;

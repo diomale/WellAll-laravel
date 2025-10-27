@@ -10,23 +10,29 @@ body {
     padding-top: 60px;
 }
 
-/* === Fix for Sidebar Alignment === */
+/* === Centered Container === */
 .container {
     background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    padding: 35px 45px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     width: 100%;
     max-width: 700px;
-    margin-left: calc(50vw - 350px); /* centers perfectly regardless of sidebar width */
+    margin: 0 auto; /* horizontal center */
+    position: absolute;
+    top: 55%; /* lowered a bit from 50% */
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
 
 /* === Title === */
 h2 {
     color: #1b5e20;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-align: center;
     font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 /* === Form Styles === */
@@ -43,13 +49,21 @@ label {
 
 input[type="text"],
 textarea {
-    padding: 10px;
+    padding: 10px 12px;
     margin-top: 4px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 14px;
     width: 100%;
     resize: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #43a047;
+    box-shadow: 0 0 3px rgba(67, 160, 71, 0.3);
 }
 
 /* === Buttons === */
@@ -57,12 +71,12 @@ textarea {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .btn {
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 10px 18px;
     font-weight: bold;
     cursor: pointer;
@@ -96,13 +110,15 @@ textarea {
 @media (max-width: 768px) {
     body {
         padding: 20px;
+        align-items: center;
     }
 
     .container {
-        margin: 0;
         width: 100%;
         max-width: 100%;
         border-radius: 0;
+        padding: 25px;
+        box-shadow: none;
     }
 
     .text-end {
@@ -113,3 +129,4 @@ textarea {
         width: 100%;
     }
 }
+
