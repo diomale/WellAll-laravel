@@ -1,110 +1,180 @@
-/* === MedicalRecordViewStyle.css === */
+/* === PatientViewStyle.css === */
 
-/* Make main content area fill beside sidebar */
-.main-content {
-    margin-left: 220px; /* match sidebar width */
+/* General layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f7f0;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    background-color: #f0f7f0;
-    padding: 40px 0;
-    position: relative;
-    left: -110px; /* balance sidebar visually */
 }
 
-/* Container box */
-.container {
+/* Main container */
+#print-section {
     background-color: #ffffff;
     padding: 40px 50px;
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     max-width: 750px;
-    width: 100%;
+    width: 90%;
+    margin-top: 40px;
 }
 
-/* Title */
-h2 {
+/* Header */
+h1 {
     color: #1b5e20;
     text-align: center;
-    margin-bottom: 30px;
     font-size: 26px;
     font-weight: 700;
-}
-
-/* Section headings */
-h4 {
-    color: #2e7d32;
-    margin-top: 20px;
     margin-bottom: 10px;
-    font-weight: 600;
-    border-bottom: 2px solid #c8e6c9;
-    padding-bottom: 4px;
 }
 
-/* Card */
-.card {
-    border-radius: 12px;
-    border: none;
+/* Barcode */
+.barcode {
+    font-family: 'Libre Barcode 39', cursive;
+    font-size: 48px;
+    text-align: center;
+    letter-spacing: 3px;
+    margin: 25px 0 40px;
+    color: #2e7d32;
+    background-color: #e8f5e9;
+    padding: 10px 0;
+    border-radius: 10px;
+    display: block;
+}
+
+/* Patient info list */
+.patient-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.patient-info li {
+    margin-bottom: 10px;
+    font-size: 16px;
     background-color: #f9fff9;
-    box-shadow: 0 3px 10px rgba(67, 160, 71, 0.15);
-    transition: transform 0.3s ease;
+    padding: 10px 14px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(67, 160, 71, 0.1);
 }
 
-.card:hover {
-    transform: translateY(-3px);
-}
-
-/* Card text */
-.card p {
-    margin: 6px 0;
-    font-size: 15.5px;
-    color: #333;
-}
-
-/* Strong labels inside paragraphs */
-.card p strong {
+.patient-info li strong {
     color: #1b5e20;
 }
 
-/* Divider line */
-hr {
-    border: none;
-    border-top: 1px solid #d0e6d0;
-    margin: 18px 0;
-}
-
-/* Back button */
-a.btn-secondary {
-    display: inline-block;
+/* Buttons */
+button {
+    display: block;
+    margin: 30px auto 10px;
     background-color: #43a047;
     color: white;
     border: none;
-    text-decoration: none;
-    padding: 10px 20px;
+    padding: 10px 25px;
     border-radius: 10px;
     font-weight: bold;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-a.btn-secondary:hover {
+button:hover {
     background-color: #2e7d32;
     transform: scale(1.03);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .main-content {
-        margin-left: 0;
-        padding: 20px;
-        left: 0;
+/* Back link */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #43a047;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #2e7d32;
+    text-decoration: underline;
+}
+
+/* === PRINT LAYOUT (ID CARD STYLE) === */
+@media print {
+    body {
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
     }
 
-    .container {
+    /* ID card size and layout */
+    #print-section {
+        width: 85mm;             /* ID card width */
+        height: 55mm;            /* ID card height */
+        border: 2px solid #2e7d32;
+        border-radius: 8px;
+        box-shadow: none;
+        padding: 10px 15px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Hide all buttons and links */
+    button, a {
+        display: none !important;
+    }
+
+    /* Hide all patient info except Blood Type */
+    .patient-info li {
+        display: none;
+    }
+
+    /* Show only Blood Type */
+    .patient-info li:has(strong:contains("Blood Type")) {
+        display: block;
+        background: none;
+        box-shadow: none;
+        border: none;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    /* Compact header and barcode */
+    h1 {
+        font-size: 14px;
+        margin: 2px 0;
+        color: #000;
+    }
+
+    .barcode {
+        font-size: 34px;
+        margin: 0;
+        color: #000;
+        background: none;
+        padding: 0;
+    }
+}
+
+/* Responsive (for normal screen view) */
+@media (max-width: 768px) {
+    #print-section {
         padding: 25px;
     }
 
-    h2 {
+    h1 {
         font-size: 22px;
+    }
+
+    .barcode {
+        font-size: 36px;
     }
 }

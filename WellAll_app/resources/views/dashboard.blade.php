@@ -27,13 +27,13 @@
         </div>
 
         <div class="stat-card">
-            <h3>Appointments Today</h3>
-            <p class="stat-value">{{ $appointmentsToday }}</p>
+            <h3>Total Doctors</h3>
+            <p class="stat-value">{{ $totalDoctors }}</p>
         </div>
 
         <div class="stat-card">
-            <h3>Total Doctors</h3>
-            <p class="stat-value">{{ $totalDoctors }}</p>
+            <h3>Appointments Today</h3>
+            <p class="stat-value">{{ $appointmentsToday }}</p>
         </div>
 
         <div class="stat-card">
