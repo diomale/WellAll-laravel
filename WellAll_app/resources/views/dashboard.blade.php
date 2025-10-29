@@ -5,6 +5,9 @@
 @section('content')
 
 <div class="dashboard-container">
+
+     <!-- ====== Header ====== -->
+    <h1 class="dashboard-title">Dashboard Overview</h1>
     
     <!-- ====== Search Section ====== -->
     <div class="search_patient">
@@ -16,9 +19,7 @@
             </form>
         </div>
     </div>
-    <!-- ====== Header ====== -->
-    <h1 class="dashboard-title">Dashboard Overview</h1>
-
+    
     <!-- ====== Stats Cards ====== -->
     <div class="stats-grid">
         <div class="stat-card">
