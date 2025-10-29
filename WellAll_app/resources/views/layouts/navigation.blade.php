@@ -1,8 +1,8 @@
 <div class="wellall-sidebar">
     <nav class="wellall-sidebar-menu">
 
-        <a href="{{ route('dashboard.index') }}" 
-           class="wellall-menu-item {{ request()->routeIs('dashboard.index') ? 'is-active' : '' }}">
+        <a href="{{ route('dashboard') }}" 
+           class="wellall-menu-item {{ request()->routeIs('dashboard') ? 'is-active' : '' }}">
             <i class="fa-solid fa-chart-line"></i>
             <span>Dashboard</span>
         </a>

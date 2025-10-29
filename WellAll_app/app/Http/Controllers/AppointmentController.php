@@ -18,7 +18,7 @@ class AppointmentController extends Controller
     {
         $search = $request->input('search');
 
-        $appointments = \App\Models\Appointment::with(['patient', 'doctor'])
+        $appointments = Appointment::with(['patient', 'doctor'])
             ->when($search, function ($query, $search) {
                 $query->whereHas('patient', function ($q) use ($search) {
                     $q->where('PatientFirstName', 'like', "%{$search}%")
@@ -27,8 +27,8 @@ class AppointmentController extends Controller
             })
             ->get();
 
-        $patients = \App\Models\Patient::all();
-        $doctors = \App\Models\Doctor::all();
+        $patients = Patient::all();
+        $doctors = Doctor::all();
 
         return view('AppointmentSection', compact('appointments', 'patients', 'doctors', 'search'));
     }

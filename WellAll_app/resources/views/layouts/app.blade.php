@@ -17,9 +17,17 @@
 
     {{-- Header --}}
     <header class="header">
-        <div class="header-title">WellAll Healthcare</div>
-        <p class="header-subtitle">Manage patients and records easily</p>
+        <div class="header-left">
+            <div class="header-title">WellAll Healthcare</div>
+            <p class="header-subtitle">Manage patients and records easily</p>
+        </div>
+
+        <form action="{{ route('logout') }}" method="POST" class="logout-form">
+            @csrf
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
     </header>
+
 
     {{-- Main Content --}}
     <main class="main-content">
