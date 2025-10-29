@@ -6,6 +6,9 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                //Log-In
+                'resources/css/LoginStyle.css',
+
                 // Base
                 'resources/css/app.css',
                 'resources/css/NavigationStyle.css',
