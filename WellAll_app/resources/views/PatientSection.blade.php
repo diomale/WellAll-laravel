@@ -22,8 +22,6 @@
                 </form>
             </div>
         </div>
-
-        <h1>All Patients</h1>
         
         {{-- Flash Messages --}}
         @if(session('success'))
@@ -123,11 +121,6 @@
         </div>
     </div>
 </div>
-
-{{-- Fallback Flash Error --}}
-@if(session('error'))
-    <p class="flash-error">{{ session('error') }}</p>
-@endif
 
 <script>
     // Toggle form visibility with animation
